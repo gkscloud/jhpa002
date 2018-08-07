@@ -57,7 +57,7 @@ export const ContactPageTemplate = ({
           </div>
       </section>
 
-      <form name="form-test" method="POST" data-netlify="true">
+      {/* <form name="form-test" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
         <p>
           <label>Your Name: <input type="text" name="name" /></label>   
         </p>
@@ -76,7 +76,7 @@ export const ContactPageTemplate = ({
         <p>
           <button type="submit">Send</button>
         </p>
-  </form>
+  </form> */}
       
     </div>
     

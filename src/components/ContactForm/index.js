@@ -18,6 +18,10 @@ class ContactForm extends Component {
         }
     }
 
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+
     handleUserInput (e) {
         const name = e.target.name;
         const value = e.target.value;
@@ -64,7 +68,15 @@ class ContactForm extends Component {
                         <div className="box">
                         <h3 className="title is-4">Contact Us Form</h3>
                             <FormErrors formErrors={this.state.formErrors} />
-                            <form name={"contact-" + this.props.formId} method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+                            <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+                                {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+                                <input type="hidden" name="form-name" value="contact" />
+                                <p hidden>
+                                    <label>
+                                    Don’t fill this out:{" "}
+                                    <input name="bot-field" onChange={this.handleChange} />
+                                    </label>
+                                </p>
                                 <div className="field"  >
                                     <label className="label">Your Name</label>
                                     <div className="control has-icons-left has-icons-right">
