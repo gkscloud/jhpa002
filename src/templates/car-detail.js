@@ -11,7 +11,17 @@ class CarDetailView extends Component {
             this.state = {data: this.props.location.state.data};
         }
         
-        console.log(this.props);
+        // console.log(this.props);
+    }
+
+    safelyGetField(fieldName){
+        if (!this.state.data)
+            return "";
+        if(fieldName in this.state.data){
+            return this.state.data[fieldName];
+        }
+        else return "";
+        
     }
 
     render() {
@@ -30,7 +40,23 @@ class CarDetailView extends Component {
                     <section>
                         <div className="columns">
                             <div className="column is-8">
-                                <CarInfoView item={this.state.data} />
+                            <CarInfoView 
+                                description={this.safelyGetField("description")}
+                                make={this.safelyGetField("make")}
+                                model={this.safelyGetField("model")}
+                                year={this.safelyGetField("year")}
+                                price={this.safelyGetField("price")}
+                                all_features={this.safelyGetField("all_features")}
+                                milage={this.safelyGetField("milage")}
+                                tranmission={this.safelyGetField("transmission")}
+                                fuel_type={this.safelyGetField("fuel_type")}
+                                engine={this.safelyGetField("engine")}
+                                drivetrain={this.safelyGetField("drivetrain")}
+                                ext_color={this.safelyGetField("ext_color")}
+                                stock={this.safelyGetField("stock")}
+                                condition={this.safelyGetField("condition")}
+                                carfax={this.safelyGetField("carfax")}
+                            />
                                 <br/>
                                 <ShippingCalculator />
                             </div>

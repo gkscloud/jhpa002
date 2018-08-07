@@ -63,7 +63,7 @@ class ContactForm extends Component {
                         <div className="box">
                         <h3 className="title is-4">Contact Us Form</h3>
                             <FormErrors formErrors={this.state.formErrors} />
-                            <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+                            <form name="contact" method="post" netlify data-netlify-honeypot="bot-field">
                                 <div className="field">
                                 <label className="label">Your Name</label>
                                 <div className="control has-icons-left has-icons-right">
@@ -105,7 +105,7 @@ class ContactForm extends Component {
 
                                 <div className="field is-grouped">
                                     <div className="control">
-                                        <button className="button is-primary" disabled={!this.state.formValid}>Submit</button>
+                                        <button className="button is-primary" type="submit" disabled={!this.state.formValid}>Submit</button>
                                     </div>
                                     <div className="control">
                                         <button className="button is-light">Cancel</button>

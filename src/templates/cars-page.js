@@ -162,38 +162,19 @@ class CarsPage extends Component {
                                                     description: (
                                                         <div className="media">
                                                             <div className="media-left">
-                                                            {/* <div className="title is-6">
+                                                            <div className="title is-6">
                                                                 {res.make + " " + res.model + " " + res.year}
-                                                            </div> */}
                                                             </div>
-                                                            {/* <p className="subtitle is-5"><strong>${res.price}</strong></p>
+                                                            </div>
+                                                            <p className="subtitle is-5"><strong>${res.price}</strong></p>
                                                             <p><strong>Mileage:</strong> {res.milage} km </p>
-                                                            <CarFaxReport item={res.carfax} /> */}
+                                                            <CarFaxReport item={res.carfax} />
                                                             <div className="media-content">
-                                                                <CarInfoView 
-                                                                    description={res.description}
-                                                                    make={res.make}
-                                                                    model={res.model}
-                                                                    year={res.year}
-                                                                    price={res.price}
-                                                                    all_features={res.all_features}
-                                                                    milage={res.milage}
-                                                                    tranmission={res.transmission}
-                                                                    fuel_type={res.fuel_type}
-                                                                    engine={res.engine}
-                                                                    drivetrain={res.drivetrain}
-                                                                    ext_color={res.ext_color}
-                                                                    stock={res.stock}
-                                                                    condition={res.condition}
-                                                                    carfax={res.carfax}
-                                                                />
-                                                            </div>
-                                                            {/* <div className="media-content">
                                                                 <div className="box">
                                                                     <p><strong>Description:</strong></p>
                                                                     <div> {res.description == null? 'None' : res.description.substring(0,100)} ... </div>
                                                                 </div>
-                                                            </div> */}
+                                                            </div>
                                                         </div>),
                                                         containerProps:{
                                                             onClick: () => this.setRedirect({res})
