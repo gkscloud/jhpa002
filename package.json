@@ -1,12 +1,12 @@
 {
   "name": "gatsby-starter-business",
-  "description": "Gatsby Business Website Starter",
+  "description": "Port Auto Cars",
   "version": "1.0.0",
-  "author": "Vaibhav Sharma",
+  "author": "G.K.",
   "dependencies": {
     "@appbaseio/reactivesearch": "^2.6.12",
     "bulma": "^0.6.2",
-    "gatsby": "^1.9.241",
+    "gatsby": "^1.9.277",
     "gatsby-image": "^1.0.55",
     "gatsby-link": "^1.6.46",
     "gatsby-plugin-feed": "^1.3.20",
