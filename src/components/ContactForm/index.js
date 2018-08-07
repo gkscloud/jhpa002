@@ -63,7 +63,7 @@ class ContactForm extends Component {
                         <div className="box">
                         <h3 className="title is-4">Contact Us Form</h3>
                             <FormErrors formErrors={this.state.formErrors} />
-                            <form name="contact" method="post" netlify data-netlify-honeypot="bot-field">
+                            <form name="contact" method="POST" netlify>
                                 <div className="field">
                                 <label className="label">Your Name</label>
                                 <div className="control has-icons-left has-icons-right">
