@@ -64,8 +64,8 @@ class ContactForm extends Component {
                         <div className="box">
                         <h3 className="title is-4">Contact Us Form</h3>
                             <FormErrors formErrors={this.state.formErrors} />
-                            <form name={"contact-" + this.props.formId} method="POST" data-netlify="true">
-                                <div className="field">
+                            <form name={"contact-" + this.props.formId} method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+                                <div className="field"  >
                                     <label className="label">Your Name</label>
                                     <div className="control has-icons-left has-icons-right">
                                         <input className="input"  name="name" type="text" placeholder="Your name here" value={this.state.user} onChange={(event) => this.handleUserInput(event)}/>
