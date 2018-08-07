@@ -6,7 +6,11 @@ import ShippingCalculator from '../components/ShippingCalculator'
 class CarDetailView extends Component {
     constructor(props) {
         super(props);
-        this.state = {data: this.props.location.state.data};
+        this.state = {'data': {}}
+        if(this.props.location.state){
+            this.state = {data: this.props.location.state.data};
+        }
+        
         console.log(this.props);
     }
 

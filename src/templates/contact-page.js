@@ -5,6 +5,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import ContactForm from '../components/ContactForm'
+import Contact from '../components/Contact'
 
 export const ContactPageTemplate = ({
   title,
@@ -38,21 +39,22 @@ export const ContactPageTemplate = ({
         </div>
       </section>
 
-      {/* <section className='section'>
-        <div className='container'>
-          {contacts.map((contact, id) =>
-            <Contact key={id} email={contact.email} description={contact.description} />
-          )}
-        </div>
-      </section> */}
       <section className="section">
-        <div className="columns">
-          <div className="container">
-            <div className="column is-4 is-offset-4">
-              <ContactForm />
+      <div className="columns">
+            <div className="container">
+              <div className='container'>
+                <div className="column">
+                    {contacts.map((contact, id) =>
+                      <Contact key={id} email={contact.email} description={contact.description} />
+                    )}
+                </div>
+              </div>
+              <div className="column">
+                <ContactForm />
+              </div>
             </div>
+            
           </div>
-        </div>
       </section>
       
     </div>
