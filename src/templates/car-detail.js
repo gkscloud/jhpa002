@@ -61,7 +61,7 @@ class CarDetailView extends Component {
                                 <ShippingCalculator />
                             </div>
                             <div className="column">
-                                <ContactForm />
+                                <ContactForm formId="car-detail-inquiry" />
                             </div>
                         </div>
                         

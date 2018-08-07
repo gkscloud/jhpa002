@@ -6,6 +6,7 @@ class ContactForm extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            formId: this.props.formId,
             name: '',
             email: '',
             password: '',
@@ -63,34 +64,34 @@ class ContactForm extends Component {
                         <div className="box">
                         <h3 className="title is-4">Contact Us Form</h3>
                             <FormErrors formErrors={this.state.formErrors} />
-                            <form name="contact" method="POST" netlify>
+                            <form name={"contact-" + this.props.formId} method="POST" data-netlify="true">
                                 <div className="field">
-                                <label className="label">Your Name</label>
-                                <div className="control has-icons-left has-icons-right">
-                                    <input className="input"  name="name" type="text" placeholder="Your name here" value={this.state.user} onChange={(event) => this.handleUserInput(event)}/>
-                                    <span className="icon is-small is-left">
-                                    <i className="fas fa-user"></i>
-                                    </span>
-                                    <span className="icon is-small is-right">
-                                    <i className="fas fa-check"></i>
-                                    </span>
-                                </div>
-                                {/* + (this.state.nameValid ? 'is-success': 'is-danger') */}
-                                {/* <p className="help is-danger">Name cannot be blank!</p> */}
+                                    <label className="label">Your Name</label>
+                                    <div className="control has-icons-left has-icons-right">
+                                        <input className="input"  name="name" type="text" placeholder="Your name here" value={this.state.user} onChange={(event) => this.handleUserInput(event)}/>
+                                        <span className="icon is-small is-left">
+                                        <i className="fas fa-user"></i>
+                                        </span>
+                                        <span className="icon is-small is-right">
+                                        <i className="fas fa-check"></i>
+                                        </span>
+                                    </div>
+                                    {/* + (this.state.nameValid ? 'is-success': 'is-danger') */}
+                                    {/* <p className="help is-danger">Name cannot be blank!</p> */}
                                 
                                 </div>
 
                                 <div className="field">
-                                <label className="label">Your Email</label>
-                                <div className="control has-icons-left has-icons-right">
-                                    <input className="input " name="email" type="email" placeholder="Enter a valid email" value={this.state.email} onChange={(event) => this.handleUserInput(event)}/>
-                                    <span className="icon is-small is-left">
-                                    <i className="fas fa-envelope"></i>
-                                    </span>
-                                    <span className="icon is-small is-right">
-                                    <i className="fas fa-exclamation-triangle"></i>
-                                    </span>
-                                </div>
+                                    <label className="label">Your Email</label>
+                                    <div className="control has-icons-left has-icons-right">
+                                        <input className="input " name="email" type="email" placeholder="Enter a valid email" value={this.state.email} onChange={(event) => this.handleUserInput(event)}/>
+                                        <span className="icon is-small is-left">
+                                        <i className="fas fa-envelope"></i>
+                                        </span>
+                                        <span className="icon is-small is-right">
+                                        <i className="fas fa-exclamation-triangle"></i>
+                                        </span>
+                                    </div>
                                 {/* + (this.state.emailValid ? 'is-success': 'is-danger') */}
                                 {/* <p className="help is-danger">This email is invalid</p> */}
                                 
