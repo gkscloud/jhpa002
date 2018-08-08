@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import LightBox from 'react-image-lightbox'
+
 
 class SimpleCarouselTemplate extends React.Component {
     constructor(props){
@@ -11,6 +11,18 @@ class SimpleCarouselTemplate extends React.Component {
             currentImg: '',
             photoIndex: 0,
             isOpen: false }
+    }
+
+    componentDidMount(){
+        //need to import here because doing it outside this will cause a webpack: window is not defined error 
+        //when generating static content using gatsby build
+        try {
+            this.react_image_lightbox = require("react-image-lightbox");
+            this.react_image_lightbox.use();
+        }
+        catch (e){
+            console.log(e)
+        }
     }
 
     getItems(){
