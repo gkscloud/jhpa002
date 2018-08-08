@@ -9,11 +9,13 @@ import Footer from '../components/Footer'
 import './styles.sass'
 import config from '../../meta/config'
 
+
 const TemplateWrapper = ({children}) => (
   <div>
     <Helmet>
       <title>{config.siteTitle}</title>
       <meta name='description' content={config.siteDescription} />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </Helmet>
     <NavBar />
     <div>{children()}</div>

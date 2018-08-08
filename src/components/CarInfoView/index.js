@@ -63,7 +63,7 @@ class CarInfoView extends Component {
                         </figure> */}
                         <section className="section">
                             
-                            <div className="title is-5">{this.props.make + " " + this.props.model + " " + this.props.year} </div>
+                            <div className="title is-2">{this.props.make + " " + this.props.model + " " + this.props.year} </div>
                             <div className="columns">
                                 <div className="column is-4">
                                     <div>

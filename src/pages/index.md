@@ -7,11 +7,11 @@ meta_description: >-
   ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
   venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis
   consectetur purus sit amet fermentum.
-heading: Welcome!
+heading: Welcome to Port Auto!
 description: >-
   Choose your car and let us handle the rest.
 
-  All you need to do is get in touch with us with your choice of car and we will buy the car for you, deal with all the administrative duties, handle your car with care and carefully ship it to your nearest port.
+  All you need to do is get in touch with us with your choice of car and we will buy the car for you, deal with all the administrative duties, handle your car with care and carefully ship it to your nearest port.  
 offerings:
   blurbs:
     - image: /icons/car.png
@@ -30,6 +30,19 @@ offerings:
       header: DEALER LISTINGS
       text: >
         Register with Port Auto to sell and export your car inventory
+featured:
+  - image: "https://bit.do/demoimg"
+    header: "Featured Car"
+    text: >
+      This car is available at a great price. Mint condition. Used.
+  - image: "https://bit.do/demoimg"
+    header: "Featured Car"
+    text: >
+      This car is available at a great price. Mint condition. Used.
+  - image: "https://bit.do/demoimg"
+    header: "Featured Car"
+    text: >
+      This car is available at a great price. Mint condition. Used. 
 testimonials:
   - author: Vaibhav Sharma
     quote: >-
@@ -40,6 +53,8 @@ testimonials:
       Fusce porttitor vulputate enim, nec blandit magna gravida et. Etiam et dignissim ligula. 
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 brands:
+  description: >-
+    Our listings range across a variety of all well-known brands! 
   items:
     - image: /img/brands/car_logo_PNG1640_audi.png
     - image: /img/brands/car_logo_PNG1641_bmw.png

@@ -1,7 +1,8 @@
 @import "~bulma/sass/utilities/initial-variables"
 
-$primary: #ab120e
 $primary-invert: #ffffff
+$navbar-background-color: #ffffff
+$footer-background-color: #242424
 
 nav
   border-bottom: lightgray solid 0.1vmin
@@ -24,6 +25,12 @@ nav
 .margin-top-0
   margin-top: 0 !important
 
+.primary-background
+  background-color: #F5F5F5
+
+.inverted-background
+  background-color: #ffffff
+
 @import "~bulma"
 
 .hero-home-page
@@ -36,3 +43,20 @@ nav
   background-image: url('/img/buildings-1851246_1920.jpg')
   background-repeat: no-repeat
 
+.hero-salvage-cars
+  @extend .hero
+  background-image: url('/img/2016_nissan_altima_sr_2_1600x1200.jpg')
+  background-repeat: no-repeat
+
+.hero-shipping-service
+  @extend .hero
+  background-image: url('/img/aeroplane-air-travel-aircraft-33281.jpg')
+  background-repeat: no-repeat
+
+.hero-about-us
+  @extend .hero
+  background-image: url('/img/auto-automobile-automotive-919073_1920x800.jpg')
+  background-repeat: no-repeat
+
+@import ~react-image-lightbox/style.css
+@import "./custom.css"

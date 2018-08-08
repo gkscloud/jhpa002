@@ -50,7 +50,7 @@ export const ContactPageTemplate = ({
                 </div>
               </div>
               <div className="column">
-                <ContactForm formId="general" />
+                <ContactForm formId="general" formData={{}} />
               </div>
             </div>
             

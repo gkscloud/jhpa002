@@ -13,7 +13,7 @@ class CarsPage extends Component {
 
     setRedirect(item) {
         this.setState({redirect: true, data:item.res});
-        console.log('setRedirect: ', item);
+        // console.log('setRedirect: ', item);
     }
 
     renderRedirect() {
@@ -23,14 +23,14 @@ class CarsPage extends Component {
         else {
             return(
                 <div>
-                    <div className="hero is-light">
+                    <section className="hero is-info is-bold">
                         <div className="hero-body">
                             <div className="container">
-                                <p className="title is-5 is-dark"> Interested?</p>
-                                <p className="subtitle is-6">Contact us for a great experience.</p>
+                                <p className="title is-5">Browse our inventory</p>
+                                <p className="subtitle is-6">We are here to help</p>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
                 <ReactiveBase 
                             app="portauto-2"
@@ -162,13 +162,14 @@ class CarsPage extends Component {
                                                     description: (
                                                         <div className="media">
                                                             <div className="media-left">
-                                                            <div className="title is-6">
-                                                                {res.make + " " + res.model + " " + res.year}
+                                                                <div className="title is-6">
+                                                                    {res.make + " " + res.model + " " + res.year}
+                                                                </div>
+                                                                <p className="subtitle is-5"><strong>${res.price}</strong></p>
+                                                                <p><strong>Mileage:</strong> {res.milage} km </p>
+                                                                <CarFaxReport item={res.carfax} />
                                                             </div>
-                                                            </div>
-                                                            <p className="subtitle is-5"><strong>${res.price}</strong></p>
-                                                            <p><strong>Mileage:</strong> {res.milage} km </p>
-                                                            <CarFaxReport item={res.carfax} />
+                                                            
                                                             <div className="media-content">
                                                                 <div className="box">
                                                                     <p><strong>Description:</strong></p>

@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import FormErrors from '../../components/FormErrors'
 
 class ContactForm extends Component {
@@ -7,6 +8,7 @@ class ContactForm extends Component {
         super(props);
         this.state = {
             formId: this.props.formId,
+            formData: this.props.formData,
             name: '',
             email: '',
             password: '',
@@ -77,6 +79,7 @@ class ContactForm extends Component {
                                     <input name="bot-field" onChange={this.handleChange} />
                                     </label>
                                 </p>
+                                <input className="input" name="form-data" type="hidden" value={this.state.formData}/>
                                 <div className="field"  >
                                     <label className="label">Your Name</label>
                                     <div className="control has-icons-left has-icons-right">
@@ -130,6 +133,11 @@ class ContactForm extends Component {
         
         )
     }
+}
+
+ContactForm.propTypes = {
+    formId: PropTypes.string,
+    formData: PropTypes.object
 }
 
 export default ContactForm

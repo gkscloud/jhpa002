@@ -9,6 +9,7 @@ import Testimonials from '../components/Testimonials'
 import Brands from '../components/Brands'
 import SpecialOffers from '../components/SpecialOffers'
 import { ReactiveBase, ResultCard } from '@appbaseio/reactivesearch'
+import { Link } from 'react-router-dom'
 
 export const HomePageTemplate = ({
   title,
@@ -26,7 +27,7 @@ export const HomePageTemplate = ({
       <meta name='description' content={meta_description} />
       {/* <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/> */}
     </Helmet>
-    <section className='hero-home-page'>
+    <section className='hero-home-page is-medium'>
       <div className='hero-body'>
         <div className='container'>
           <div className='columns'>
@@ -53,19 +54,23 @@ export const HomePageTemplate = ({
                   <h2 className='has-text-weight-semibold is-size-3'>
                     {heading}
                   </h2>
-                  <p className='subtitle is-6'>{description}</p>
+                  <p className='subtitle is-5'>{description}</p> 
                   <br/>
                   <Offerings gridItems={offerings.blurbs} />
                 </section>
 
-                <section className='section'>
-                  <h2 className='has-text-weight-semibold is-size-3'>Brands</h2>
-                  <Brands brands={brands.items} />
+                <section className='section primary-background'>
+                    <h2 className='has-text-weight-semibold is-size-3'>Brands</h2>
+                    <p className='subtitle is-5'>{brands.description}</p> 
+              
+                    <br/>
+                    <div className="box">
+                    <Brands brands={brands.items} />
+                    </div>
                 </section>
                 
-                
                 <section className='section'>
-                  <h2 className='has-text-weight-semibold is-size-3'>Special Offers</h2>
+                  <div className='has-text-weight-semibold is-size-3 has-text-danger'>Special Offers</div>
                   <ReactiveBase 
                     app="portauto-2"
                     credentials="B7X4XWPDE:6b3907e8-7d47-43fb-b43b-e639e77cd781"> 
@@ -79,7 +84,7 @@ export const HomePageTemplate = ({
                         showResultStats = {false}
                         defaultQuery={function(){
                           return {
-                            "match": {"featured": "true"}
+                            "match": {"featured": true}
                           }
                         }}
                         onData={(res)=> {
@@ -88,11 +93,14 @@ export const HomePageTemplate = ({
                                 title: res.name,
                                 description: (
                                     <div>
-                                    <div className="title is-6">
-                                        {res.make + " " + res.model + " " + res.year}
+                                      <div className="title is-6">
+                                          {res.make + " " + res.model + " " + res.year}
+                                      </div>
+                                        {/* <p className="subtitle is-5"><strong>${res.price}</strong></p>
+                                        <p><strong>Mileage:</strong> {res.milage} km </p> */}
+                                      <p className="subtitle is-6">{res.offer_details}</p>
+                                      <Link to={{pathname:"/carDetail", state:{data: res}}}> View Listing</Link>
                                     </div>
-                                    <p className="subtitle is-5"><strong>${res.price}</strong></p>
-                                    <p><strong>Mileage:</strong> {res.milage} km </p> </div>
                                 )
                               };
                             }
@@ -100,10 +108,17 @@ export const HomePageTemplate = ({
                     </ReactiveBase>
                 </section>
 
-                <section className='section'>
+                <section className='section primary-background'>
+                  <div className="box">
+                    <h1 className='title is-primary is-size-5'>Questions, Concerns or Feedback?</h1>
+                    <p className="subtitle is-1 has-text-center"><Link to="/Contact"> Get in touch with us.</Link> We'd love to hear from you!</p>
+                  </div>
+                </section>
+
+                {/* <section className='section'>
                   <h2 className='has-text-weight-semibold is-size-3'>Testimonials</h2>
                   <Testimonials testimonials={testimonials} />
-                </section>
+                </section> */}
               </div>
             </div>
           </div>
@@ -178,6 +193,7 @@ export const pageQuery = graphql`
           quote
         }
         brands{
+          description
           items{
             image
           }

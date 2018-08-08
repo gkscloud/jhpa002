@@ -6,7 +6,7 @@ import Link from 'gatsby-link'
 
 const NavBar = () => {
   return (
-    <nav className='navbar is-fixed-top is-light' aria-label='main navigation'>
+    <nav className='navbar is-fixed-top' aria-label='main navigation'>
       <div className='navbar-brand'>
         <Link to='/' className='navbar-item'>
                     PortAuto
@@ -38,8 +38,11 @@ const NavBar = () => {
           <Link className='navbar-item' to='/About'>
                         About
           </Link>
-          <Link className='navbar-item' to='/Contact'>
+          <Link className='navbar-item ' to='/Contact'>
                         Contact
+          </Link>
+          <Link className='navbar-item ' to='ru/Contact'>
+                        Contact (RU)
           </Link>
         </div>
         <div className='navbar-end'>
@@ -47,7 +50,7 @@ const NavBar = () => {
             <div className='field is-grouped'>
               <p className='control'>
                 <Link
-                  className='button is-primary is-outlined'
+                  className='button is-danger is-outlined'
                   to='/contact'>
                                     Contact Us
                 </Link>
