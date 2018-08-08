@@ -12,5 +12,3 @@ meta_description: >-
 ## Do you require shipping services ? We've got you covered! 
 
 Port Auto offers shipping services at discounted costs. Use the calculator below as a quick check for our prices from major ports from the USA to most popular international ports.
-
-**Etiam ultricies nisi vel augue!**
