@@ -41,9 +41,7 @@ const NavBar = () => {
           <Link className='navbar-item ' to='/Contact'>
                         Contact
           </Link>
-          <Link className='navbar-item ' to='ru/Contact'>
-                        Contact (RU)
-          </Link>
+         
         </div>
         <div className='navbar-end'>
           <div className='navbar-item'>
