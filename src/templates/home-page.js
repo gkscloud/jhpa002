@@ -122,7 +122,7 @@ export const HomePageTemplate = ({
                             {/* <p className="subtitle is-5"><strong>${res.price}</strong></p>
                             <p><strong>Mileage:</strong> {res.milage} km </p> */}
                           <p className="subtitle is-6">{res.offer_details}</p>
-                          <Link to={{pathname:"/carDetail", state:{data: res}}}> View Listing</Link>
+                          <Link to={{pathname:"/carDetail/?id=" + res.id, state:{data: res}}}> View Listing</Link>
                         </div>
                     )
                   };
