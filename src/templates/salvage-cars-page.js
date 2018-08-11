@@ -4,7 +4,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { Redirect } from 'react-router'
 import Content, {HTMLContent} from '../components/Content'
+var language = require('../components/languagePack')
 
 export const SalvageCarsPageTemplate = ({title, content, contentComponent}) => {
   const PageContent = contentComponent || Content
@@ -48,22 +50,36 @@ SalvageCarsPageTemplate.propTypes = {
   contentComponent: PropTypes.func,
 }
 
-const SalvageCarsPage = ({data}) => {
-  const {markdownRemark: post} = data
+class SalvageCarsPage extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  render() {
+    const {markdownRemark: post} = this.props.data;
 
-  return (
-    <div>
-      <Helmet>
-        <title>{post.frontmatter.meta_title}</title>
-        <meta name='description' content={post.frontmatter.meta_description} />
-      </Helmet>
-      <SalvageCarsPageTemplate
-        contentComponent={HTMLContent}
-        title={post.frontmatter.title}
-        content={post.html}
-      />
-    </div>
-  )
+    if(this.props.reload){
+      var reloadPath = '/SalvageCars/' + language.getLangCode(this.props.language);
+      if(reloadPath != this.props.location.pathname){
+        return (
+          <Redirect to={reloadPath}/>
+        );
+      }
+    }
+
+    return (
+      <div>
+        <Helmet>
+          <title>{post.frontmatter.meta_title}</title>
+          <meta name='description' content={post.frontmatter.meta_description} />
+        </Helmet>
+        <SalvageCarsPageTemplate
+          contentComponent={HTMLContent}
+          title={post.frontmatter.title}
+          content={post.html}
+        />
+      </div>
+    );
+  }
 }
 
 SalvageCarsPage.propTypes = {

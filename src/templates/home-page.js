@@ -4,12 +4,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { Redirect } from 'react-router'
 import Offerings from '../components/Offerings'
 import Testimonials from '../components/Testimonials'
 import Brands from '../components/Brands'
 import SpecialOffers from '../components/SpecialOffers'
 import { ReactiveBase, ResultCard } from '@appbaseio/reactivesearch'
 import { Link } from 'react-router-dom'
+var language = require('../components/languagePack')
 
 export const HomePageTemplate = ({
   title,
@@ -21,6 +23,7 @@ export const HomePageTemplate = ({
   testimonials,
   brands,
   featured,
+  appbaseio
 }) => (
   <div>
     <Helmet>
@@ -95,8 +98,8 @@ export const HomePageTemplate = ({
     <section className='section'>
       {/* <div className='has-text-weight-semibold is-size-3 has-text-danger'>Special Offers</div> */}
       <ReactiveBase 
-        app="portauto-2"
-        credentials="B7X4XWPDE:6b3907e8-7d47-43fb-b43b-e639e77cd781"> 
+        app={appbaseio.project}
+        credentials={appbaseio.accessKey}> 
 
         <ResultCard 
             componentId="specialOffersResult"
@@ -164,24 +167,43 @@ HomePageTemplate.propTypes = {
     items: PropTypes.array
   }),
   featured_description: PropTypes.string,
+  appbaseio: PropTypes.object,
 }
 
-const HomePage = ({data}) => {
-  const {frontmatter} = data.markdownRemark
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <HomePageTemplate
-      title={frontmatter.title}
-      meta_title={frontmatter.meta_title}
-      meta_description={frontmatter.meta_description}
-      heading={frontmatter.heading}
-      description={frontmatter.description}
-      offerings={frontmatter.offerings}
-      testimonials={frontmatter.testimonials}
-      brands={frontmatter.brands}
-      featured={frontmatter.featured_description}
-    />
-  )
+  render() {
+
+    const {frontmatter} = this.props.data.markdownRemark;
+    const {siteMetadata} = this.props.data.site;
+
+    if(this.props.reload){
+      var reloadPath = '/' + language.getLangCode(this.props.language);
+      if(reloadPath != this.props.location.pathname){
+        return (
+          <Redirect to={reloadPath}/>
+        );
+      }
+    }
+
+    return (
+      <HomePageTemplate
+        title={frontmatter.title}
+        meta_title={frontmatter.meta_title}
+        meta_description={frontmatter.meta_description}
+        heading={frontmatter.heading}
+        description={frontmatter.description}
+        offerings={frontmatter.offerings}
+        testimonials={frontmatter.testimonials}
+        brands={frontmatter.brands}
+        featured={frontmatter.featured_description}
+        appbaseio={siteMetadata.appbaseio}
+      />
+    );
+  }
 }
 
 HomePage.propTypes = {

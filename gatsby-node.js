@@ -2,8 +2,17 @@
  * Created by vaibhav on 31/3/18
  */
 const _ = require('lodash')
+const fs = require("fs-extra")
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
+
+exports.onPostBuild = () => {
+  console.log("Copying locales");
+  fs.copySync(
+    path.join(__dirname, "/src/locales"),
+    path.join(__dirname, "/public/locales")
+  );
+};
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators

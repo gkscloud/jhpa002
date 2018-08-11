@@ -4,8 +4,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { Redirect } from 'react-router';
 import ContactForm from '../components/ContactForm'
 import Contact from '../components/Contact'
+var language = require('../components/languagePack')
 
 export const ContactPageTemplate = ({
   title,
@@ -94,17 +96,34 @@ ContactPageTemplate.propTypes = {
 
 }
 
-const ContactPage = ({data}) => {
-  const {frontmatter} = data.markdownRemark
-  return (
-    <ContactPageTemplate
-      title={frontmatter.title}
-      subtitle={frontmatter.subtitle}
-      meta_title={frontmatter.meta_title}
-      meta_description={frontmatter.meta_description}
-      contacts={frontmatter.contacts}
-    />
-  )
+class ContactPage extends React.Component  {
+  constructor(props){
+    super(props);
+  }
+
+  render() {
+
+    const {frontmatter} = this.props.data.markdownRemark
+    
+    if(this.props.reload){
+      var reloadPath = '/Contact/' + language.getLangCode(this.props.language);
+      if(reloadPath != this.props.location.pathname){
+        return (
+          <Redirect to={reloadPath}/>
+        );
+      }
+    }
+    
+    return (
+      <ContactPageTemplate
+        title={frontmatter.title}
+        subtitle={frontmatter.subtitle}
+        meta_title={frontmatter.meta_title}
+        meta_description={frontmatter.meta_description}
+        contacts={frontmatter.contacts}
+      />
+    );
+  }
 }
 
 ContactPage.propTypes = {

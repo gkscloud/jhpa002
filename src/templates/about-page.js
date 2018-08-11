@@ -5,6 +5,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import Content, {HTMLContent} from '../components/Content'
+import { Redirect } from 'react-router';
+var language = require('../components/languagePack')
 
 export const AboutPageTemplate = ({title, content, contentComponent}) => {
   const PageContent = contentComponent || Content
@@ -48,22 +50,41 @@ AboutPageTemplate.propTypes = {
   contentComponent: PropTypes.func,
 }
 
-const AboutPage = ({data}) => {
-  const {markdownRemark: post} = data
+class AboutPage extends React.Component {
+  constructor(props){
+    super(props);  
 
-  return (
-    <div>
-      <Helmet>
-        <title>{post.frontmatter.meta_title}</title>
-        <meta name='description' content={post.frontmatter.meta_description} />
-      </Helmet>
-      <AboutPageTemplate
-        contentComponent={HTMLContent}
-        title={post.frontmatter.title}
-        content={post.html}
-      />
-    </div>
-  )
+    this.state = ({'reload':this.props.reload})
+  }
+
+  render(){
+    const {markdownRemark: post} = this.props.data
+    // console.log("About page props: ", this.props);
+
+    if(this.props.reload){
+      var reloadPath = '/About/' + language.getLangCode(this.props.language);
+      if(reloadPath != this.props.location.pathname){
+        return (
+          <Redirect to={reloadPath}/>
+        );
+      }
+    }
+
+    return (
+      <div>
+        <Helmet>
+          <title>{post.frontmatter.meta_title}</title>
+          <meta name='description' content={post.frontmatter.meta_description} />
+        </Helmet>
+        <AboutPageTemplate
+          contentComponent={HTMLContent}
+          title={post.frontmatter.title}
+          content={post.html}
+        />
+      </div>
+    );
+  }
+
 }
 
 AboutPage.propTypes = {

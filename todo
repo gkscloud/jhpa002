@@ -1,0 +1,21 @@
+1.	I ran both the link in body of the email and the links in your attached list.json file - both went well alright. See the attached two details.json files of the results, I omitted the images links for these ones to save time during scraping. It would be nice if we could go over the scraper together as it isn't 100% automatic and I can explain what I intended with each spider and how I was planning to use them.  I will share my repository on bitbucket today as I will be prettying the scraper more and more and I would like you to see and use the newer versions.
+When it comes to the images, I could really use your opinion. So currently, the scraper pulls all the pictures to images/full folder (I don't mind manually uploading these to online cloud every time from where the netlify can access to) and it also yields each of the pictures paths, such as:
+
+ 
+
+each product (i.e. car) has its own "images" list, I was thinking we could ultimately use these paths as a pointer to the pictures i uploaded to the cloud (which contains all pictures of all products in one images/full folder as mentioned before)
+2.	Sounds good with the urls. Also, please let me know if the same can be done in list view, the similar way how cars.com does:
+"https://www.cars.com/for-sale/searchresults.action/?localVehicles=true&mdId=20606&mkId=20017&page=1&perPage=100&rd=20&searchSource=PAGINATION&showMore=true&sort=relevance&stkTypId=28881&zc=20017"
+maybe not so super detailed like they do (which includes products per page etc.), but to include at least some essential filters (make, model, trim, year, max milage, max price, new vs used)
+3.	Yes please, the search bar drop down menus are essential - used/new, make, model, min year, max price. Btw, I like the idea of search with keywords in list view: 
+ 
+It can be innovative for superusers! So lets keep that too for now, it's a good one.
+4.	Please don't spend too much energy on this one. I trust your design ideas. Let's just add some red here and there in Navbar and some buttons. Portauto's design was good enough, so similar or close to similar to it would  be great.
+5.	I'll check the result of the refunds today.
+6.	Calculator overall looks pretty good, and I agree with you that only port of the chosen country should be filtered/shown in the drop down menu once that specific country is selected. What I didn't find pleasant was the reset button, as in for example, if I choose Germany as a country of destination but then decide to change my choice I need to use "reset" button in order to be able to do that. That was the only thing I was proposing to change - is it possible to do that without a reset button, just drop down and choose another country and the next drop down menu - ports - will change its choices accordingly. 
+Also, I really really need to have countries, ports and respective prices in admin panel to be able to tweak them or add.remove them later on. 
+7.	Yes, let's focus on the previous items before we dive into this one, I feel like it's going to be a bit bigger item than any other ones. I just hope it isn't going to bring us many problems as supposedly netlify's framework should have good structure to build on for this.
+
+
+
+$navbar-item-hover-background-color: #B80F0A

@@ -4,8 +4,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { Redirect } from 'react-router'
 import Content, {HTMLContent} from '../components/Content'
 import ShippingCalculator from '../components/ShippingCalculator'
+var language = require('../components/languagePack')
 
 export const ShippingServicePageTemplate = ({title, content, contentComponent}) => {
   const PageContent = contentComponent || Content
@@ -50,22 +52,37 @@ ShippingServicePageTemplate.propTypes = {
   contentComponent: PropTypes.func,
 }
 
-const ShippingServicePage = ({data}) => {
-  const {markdownRemark: post} = data
+class ShippingServicePage extends React.Component {
+  constructor(props){
+    super(props);
+  }
 
-  return (
-    <div>
-      <Helmet>
-        <title>{post.frontmatter.meta_title}</title>
-        <meta name='description' content={post.frontmatter.meta_description} />
-      </Helmet>
-      <ShippingServicePageTemplate
-        contentComponent={HTMLContent}
-        title={post.frontmatter.title}
-        content={post.html}
-      />
-    </div>
-  )
+  render() {
+    const {markdownRemark: post} = this.props.data;
+
+    if(this.props.reload){
+      var reloadPath = '/ShippingService/' + language.getLangCode(this.props.language);
+      if(reloadPath != this.props.location.pathname){
+        return (
+          <Redirect to={reloadPath}/>
+        );
+      }
+    }
+
+    return (
+      <div>
+        <Helmet>
+          <title>{post.frontmatter.meta_title}</title>
+          <meta name='description' content={post.frontmatter.meta_description} />
+        </Helmet>
+        <ShippingServicePageTemplate
+          contentComponent={HTMLContent}
+          title={post.frontmatter.title}
+          content={post.html}
+        />
+      </div>
+    );
+  }
 }
 
 ShippingServicePage.propTypes = {

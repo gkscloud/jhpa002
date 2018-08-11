@@ -1,8 +1,8 @@
 ---
 templateKey: 'salvage-cars-page'
-title: Salvage Cars
+title: Auction Cars
 subtitle: Are you interested in buying salvage cars?
-meta_title: Salvage Cars | Port Auto Cars
+meta_title: Auction Cars Salvage Cars | Port Auto
 meta_description: >-
   Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
   ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
