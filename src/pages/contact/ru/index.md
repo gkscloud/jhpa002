@@ -1,8 +1,8 @@
 ---
 templateKey: 'contact-page'
-title: Contact Us
+title: Контакты
 subtitle: Вопросы? Заполните форму ниже, чтобы мы могли обеспечить вам быстрое и эффективное обслуживание в течение 24-48 часов.
-meta_title: Contact Us | Gatsby Starter Business
+meta_title: Контакты | Port Auto
 locale: en-CA
 meta_description: >-
   Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
