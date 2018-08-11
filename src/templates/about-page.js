@@ -11,13 +11,13 @@ export const AboutPageTemplate = ({title, content, contentComponent}) => {
 
   return (
     <div>
-      <section className='hero-about-us is-medium'>
+      <section className='hero-about-us'>
         <div className='hero-body'>
           <div className='container'>
             <div className='columns'>
               <div className='column is-10 is-offset-1'>
                 <div className='section'>
-                  <img className="image is-256x256" src="/img/logo_port-auto.png"/>
+                  <img src="/img/logo_port-auto.png" style={{marginBottom: "0px"}}/>
                   <h1 className='title is-2 has-text-white-bis'>
                     {title}
                   </h1>

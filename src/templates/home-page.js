@@ -20,6 +20,7 @@ export const HomePageTemplate = ({
   meta_description,
   testimonials,
   brands,
+  featured,
 }) => (
   <div>
     <Helmet>
@@ -33,7 +34,7 @@ export const HomePageTemplate = ({
           <div className='columns'>
             <div className='column is-10 is-offset-1'>
               <div className='section'>
-                <img src="/img/logo_port-auto.png"/>
+                <img src="/img/logo_port-auto.png" style={{marginBottom: "0px"}}/>
                 <h1 className='title is-2 has-text-white'>
                   {title}
                 </h1>
@@ -44,9 +45,9 @@ export const HomePageTemplate = ({
         </div>
       </div>
     </section>
+
     <section className='section section--gradient'>
       <div className='container'>
-        
           <div className='columns'>
             <div className='column is-10 is-offset-1'>
               <div className='content'>
@@ -59,62 +60,6 @@ export const HomePageTemplate = ({
                   <Offerings gridItems={offerings.blurbs} />
                 </section>
 
-                <section className='section primary-background'>
-                    <h2 className='has-text-weight-semibold is-size-3'>Brands</h2>
-                    <p className='subtitle is-5'>{brands.description}</p> 
-              
-                    <br/>
-                    <div className="box">
-                    <Brands brands={brands.items} />
-                    </div>
-                </section>
-                
-                <section className='section'>
-                  <div className='has-text-weight-semibold is-size-3 has-text-danger'>Special Offers</div>
-                  <ReactiveBase 
-                    app="portauto-2"
-                    credentials="B7X4XWPDE:6b3907e8-7d47-43fb-b43b-e639e77cd781"> 
-
-                    <ResultCard 
-                        componentId="specialOffersResult"
-                        dataField="featured"
-                        stream={true}
-                        pagination={false}
-                        size={3}
-                        showResultStats = {false}
-                        defaultQuery={function(){
-                          return {
-                            "match": {"featured": true}
-                          }
-                        }}
-                        onData={(res)=> {
-                              return {
-                                image: "https://bit.do/demoimg",
-                                title: res.name,
-                                description: (
-                                    <div>
-                                      <div className="title is-6">
-                                          {res.make + " " + res.model + " " + res.year}
-                                      </div>
-                                        {/* <p className="subtitle is-5"><strong>${res.price}</strong></p>
-                                        <p><strong>Mileage:</strong> {res.milage} km </p> */}
-                                      <p className="subtitle is-6">{res.offer_details}</p>
-                                      <Link to={{pathname:"/carDetail", state:{data: res}}}> View Listing</Link>
-                                    </div>
-                                )
-                              };
-                            }
-                        }/> 
-                    </ReactiveBase>
-                </section>
-
-                <section className='section primary-background'>
-                  <div className="box">
-                    <h1 className='title is-primary is-size-5'>Questions, Concerns or Feedback?</h1>
-                    <p className="subtitle is-1 has-text-center"><Link to="/Contact"> Get in touch with us.</Link> We'd love to hear from you!</p>
-                  </div>
-                </section>
-
                 {/* <section className='section'>
                   <h2 className='has-text-weight-semibold is-size-3'>Testimonials</h2>
                   <Testimonials testimonials={testimonials} />
@@ -124,6 +69,82 @@ export const HomePageTemplate = ({
           </div>
         
       </div>
+    </section>
+
+    <section className='section primary-background'>
+      <h2 className='has-text-weight-semibold is-size-3 has-text-centered'>Brands</h2>
+      <p className='subtitle is-5 has-text-centered'>{brands.description}</p> 
+    </section>
+
+    <section>
+      <div className='container'>
+          <div className='columns'>
+            <div className='column is-10 is-offset-1'>
+              <br/>
+              <Brands brands={brands.items} />
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section className='section primary-background'>
+      <h2 className='has-text-weight-semibold is-size-3 has-text-centered'>Special Offers</h2>
+      <p className='subtitle is-5 has-text-centered'>{featured}</p> 
+    </section>
+
+    <section className='section'>
+      {/* <div className='has-text-weight-semibold is-size-3 has-text-danger'>Special Offers</div> */}
+      <ReactiveBase 
+        app="portauto-2"
+        credentials="B7X4XWPDE:6b3907e8-7d47-43fb-b43b-e639e77cd781"> 
+
+        <ResultCard 
+            componentId="specialOffersResult"
+            dataField="featured"
+            stream={true}
+            pagination={false}
+            size={3}
+            showResultStats = {false}
+            defaultQuery={function(){
+              return {
+                "match": {"featured": true}
+              }
+            }}
+            onData={(res)=> {
+                  return {
+                    image: "https://bit.do/demoimg",
+                    title: res.name,
+                    description: (
+                        <div>
+                          <div className="title is-6">
+                              {res.make + " " + res.model + " " + res.year}
+                          </div>
+                            {/* <p className="subtitle is-5"><strong>${res.price}</strong></p>
+                            <p><strong>Mileage:</strong> {res.milage} km </p> */}
+                          <p className="subtitle is-6">{res.offer_details}</p>
+                          <Link to={{pathname:"/carDetail", state:{data: res}}}> View Listing</Link>
+                        </div>
+                    )
+                  };
+                }
+            }/> 
+        </ReactiveBase>
+    </section>
+    
+    <section>
+      <div className='container'>
+          <div className='columns'>
+            <div className='column is-10 is-offset-1'>
+              <section className='section primary-inverted'>
+                {/* <div className="box"> */}
+                  <h1 className='title is-primary is-size-5 has-text-right'>Questions, Concerns or Feedback?</h1>
+                  <p className="subtitle is-1 has-text-right"><Link to="/Contact"> Get in touch with us.</Link> </p>
+                {/* </div> */}
+              </section>
+              <br/>
+            </div>
+          </div>
+        </div>
     </section>
     
   </div>
@@ -142,7 +163,7 @@ HomePageTemplate.propTypes = {
   brands: PropTypes.shape({
     items: PropTypes.array
   }),
-
+  featured_description: PropTypes.string,
 }
 
 const HomePage = ({data}) => {
@@ -157,7 +178,8 @@ const HomePage = ({data}) => {
       description={frontmatter.description}
       offerings={frontmatter.offerings}
       testimonials={frontmatter.testimonials}
-      brands = {frontmatter.brands}
+      brands={frontmatter.brands}
+      featured={frontmatter.featured_description}
     />
   )
 }
@@ -174,6 +196,14 @@ export default HomePage
 
 export const pageQuery = graphql`
   query IndexPage($id: String!) {
+    site {
+      siteMetadata {
+        appbaseio {
+          accessKey
+          project
+        }
+      }
+    }
     markdownRemark(id: { eq: $id }) {
       frontmatter {
         title
@@ -192,12 +222,13 @@ export const pageQuery = graphql`
           author
           quote
         }
-        brands{
+        brands {
           description
-          items{
+          items {
             image
           }
         }
+        featured_description
       }
     }
   }

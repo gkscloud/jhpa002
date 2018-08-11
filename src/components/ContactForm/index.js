@@ -121,7 +121,7 @@ class ContactForm extends Component {
 
                                 <div className="field is-grouped">
                                     <div className="control">
-                                        <button className="button is-primary" type="submit" disabled={!this.state.formValid}>Submit</button>
+                                        <button className="button is-info" type="submit" disabled={!this.state.formValid}>Submit</button>
                                     </div>
                                     <div className="control">
                                         <button className="button is-light">Cancel</button>

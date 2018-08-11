@@ -52,71 +52,75 @@ class CarInfoView extends Component {
         return(
             <div>
                 
-                <div className="container is-fluid">
                 
-                    <div className="box">
-                        {/* <div> 
-                            <SimpleSlider images={images} />
-                        </div> */}
-                        {/* <figure className="image is-256x256">
-                            <img src="http://via.placeholder.com/350x150"/>
-                        </figure> */}
-                        <section className="section">
-                            
-                            <div className="title is-2">{this.props.make + " " + this.props.model + " " + this.props.year} </div>
-                            <div className="columns">
-                                <div className="column is-4">
-                                    <div>
-                                        <p className="heading">PRICE</p>
-                                        <p className="title is-3">${this.props.price}</p>
-                                        <p className="subtitle is-7">+ ADMIN. FEE</p>
-                                    </div>
-                                </div>
-                                <div className="column">
-                                    <div>
-                                        <p className="heading">MILEAGE</p>
-                                        <p className="title is-3">{this.props.milage} KM</p>
-                                    </div>
-                                </div>
-                            {/* <div className="subtitle is-3 has-text-weight-bold">${this.props.price}</div> */}
-                            </div>
-                            
-                            <div>
-                                <div className="title is-5 has-text-weight-bold is-spaced">Description</div>
-                                <p className="subtitle is-6 has-text-justified">{this.props.description}</p>
-                            </div>
-
-                            <br/>
-
-                            <div>
-                                <div className="title is-5 has-text-weight-bold">Features Summary</div>
-                                <div className="columns">
-                                    <div className="column">
-                                        <div>
-                                            <ul className="has-text-grey-dark"><strong>Transmission: </strong> {this.props.transmission} </ul>
+                    <div className="columns">
+                        <div className="column">
+                            <div className="box">
+                                {/* <div> 
+                                    <SimpleSlider images={images} />
+                                </div> */}
+                                {/* <figure className="image is-256x256">
+                                    <img src="http://via.placeholder.com/350x150"/>
+                                </figure> */}
+                                <section className="section">
+                                    
+                                    <h2 className="title is-3">{this.props.make + " " + this.props.model + " " + this.props.year} </h2>
+                                    <div className="columns">
+                                        <div className="column is-4">
+                                            <div>
+                                                <p className="heading">PRICE</p>
+                                                <p className="title is-3">${this.props.price}</p>
+                                                <p className="subtitle is-7">+ ADMIN. FEE</p>
+                                            </div>
                                         </div>
-                                        <ul className="has-text-grey-dark"><strong>Fuel Type: </strong> {this.props.fuel_type} </ul>
-                                        <ul className="has-text-grey-dark"><strong>Engine: </strong> {this.props.engine} </ul>
-                                        <ul className="has-text-grey-dark"><strong>Mileage: </strong> {this.props.milage} km </ul>
-                                        <ul className="has-text-grey-dark"><strong>Drive Train: </strong> {this.props.drivetrain} </ul>
+                                        <div className="column">
+                                            <div>
+                                                <p className="heading">MILEAGE</p>
+                                                <p className="title is-3">{this.props.milage} KM</p>
+                                            </div>
+                                        </div>
+                                    {/* <div className="subtitle is-3 has-text-weight-bold">${this.props.price}</div> */}
                                     </div>
-                                    <div className="column">
-                                        <ul className="has-text-grey-dark"><strong>Color: </strong> {this.props.ext_color} </ul>
-                                        <ul className="has-text-grey-dark"><strong>Stock: </strong> {this.props.stock} </ul>
-                                        <ul className="has-text-grey-dark"><strong>Condition: </strong> {this.props.condition} </ul>
-                                        <ul className="has-text-grey-dark"><strong>CarFax: </strong> <a href={this.props.carfax}>Link To Report</a> </ul>
+                                    
+                                    <div>
+                                        <div className="title is-5 has-text-weight-bold is-spaced">Description</div>
+                                        <p className="subtitle is-6 has-text-justified">{this.props.description}</p>
                                     </div>
-                                </div> 
-                            </div>
 
-                            <br/>
-                            <div>
-                                <div className="title is-5 has-text-weight-bold">All Features</div>
-                                {this.renderFeatures()}
+                                    <br/>
+
+                                    <div>
+                                        <div className="title is-5 has-text-weight-bold">Features Summary</div>
+                                        <div className="columns">
+                                            <div className="column">
+                                                <div>
+                                                    <ul className="has-text-grey-dark"><strong>Transmission: </strong> {this.props.transmission} </ul>
+                                                </div>
+                                                <ul className="has-text-grey-dark"><strong>Fuel Type: </strong> {this.props.fuel_type} </ul>
+                                                <ul className="has-text-grey-dark"><strong>Engine: </strong> {this.props.engine} </ul>
+                                                <ul className="has-text-grey-dark"><strong>Mileage: </strong> {this.props.milage} km </ul>
+                                                <ul className="has-text-grey-dark"><strong>Drive Train: </strong> {this.props.drivetrain} </ul>
+                                            </div>
+                                            <div className="column">
+                                                <ul className="has-text-grey-dark"><strong>Color: </strong> {this.props.ext_color} </ul>
+                                                <ul className="has-text-grey-dark"><strong>Stock: </strong> {this.props.stock} </ul>
+                                                <ul className="has-text-grey-dark"><strong>Condition: </strong> {this.props.condition} </ul>
+                                                <ul className="has-text-grey-dark"><strong>CarFax: </strong> <a href={this.props.carfax}>Link To Report</a> </ul>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <br/>
+                                    <div>
+                                        <div className="title is-5 has-text-weight-bold">All Features</div>
+                                        {this.renderFeatures()}
+                                    </div>
+                                </section>
                             </div>
-                        </section>
+                        </div>
+
                     </div>
-                </div>
+                
             </div>
         );
     }

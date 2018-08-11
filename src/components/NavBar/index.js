@@ -8,9 +8,10 @@ const NavBar = () => {
   return (
     <nav className='navbar is-fixed-top' aria-label='main navigation'>
       <div className='navbar-brand'>
-        <Link to='/' className='navbar-item'>
-                    PortAuto
-        </Link>
+        <h2 style={{padding:"5px"}} ><Link to='/' className='navbar-item'>  
+              PORT AUTO
+        </Link></h2>
+        
         <button className='button navbar-burger' data-target='navMenu'>
           <span />
           <span />
@@ -19,6 +20,9 @@ const NavBar = () => {
       </div>
       <div className='navbar-menu' id='navMenu'>
         <div className='navbar-start'>
+          <Link className='navbar-item' to='/'>
+                        Home
+          </Link>
           <Link className='navbar-item' to='/Cars'>
                         Our Cars
           </Link>
@@ -48,7 +52,7 @@ const NavBar = () => {
             <div className='field is-grouped'>
               <p className='control'>
                 <Link
-                  className='button is-danger is-outlined'
+                  className='button is-rounded'
                   to='/contact'>
                                     Contact Us
                 </Link>

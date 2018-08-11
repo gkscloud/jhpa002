@@ -30,19 +30,7 @@ offerings:
       header: DEALER LISTINGS
       text: >
         Register with Port Auto to sell and export your car inventory
-featured:
-  - image: "https://bit.do/demoimg"
-    header: "Featured Car"
-    text: >
-      This car is available at a great price. Mint condition. Used.
-  - image: "https://bit.do/demoimg"
-    header: "Featured Car"
-    text: >
-      This car is available at a great price. Mint condition. Used.
-  - image: "https://bit.do/demoimg"
-    header: "Featured Car"
-    text: >
-      This car is available at a great price. Mint condition. Used. 
+featured_description: "Don't miss out on our special offers!"
 testimonials:
   - author: Vaibhav Sharma
     quote: >-

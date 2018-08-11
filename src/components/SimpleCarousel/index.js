@@ -31,7 +31,7 @@ class SimpleCarouselTemplate extends React.Component {
         }
         else {
             let arr = Array(this.state.defaultSize).fill(this.state.defaultImg)
-            console.log("image array: ", arr)
+            // console.log("image array: ", arr)
             return arr;
         }
     }

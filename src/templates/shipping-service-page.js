@@ -18,7 +18,7 @@ export const ShippingServicePageTemplate = ({title, content, contentComponent}) 
             <div className='columns'>
               <div className='column is-10 is-offset-1'>
                 <div className='section'>
-                <img className="image is-256x256" src="/img/logo_port-auto.png"/>
+                  <img src="/img/logo_port-auto.png" style={{marginBottom: "0px"}}/>
                   <h1 className='title is-2'>
                     {title}
                   </h1>

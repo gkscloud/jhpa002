@@ -14,9 +14,13 @@ module.exports = {
       feed_url: config.siteUrl + pathPrefix + config.siteRss,
       title: config.siteTitle,
       description: config.siteDescription,
-      image_url: `${config.siteUrl + pathPrefix}/icons/icon-512x512.png`,
+      image_url: `${config.siteUrl + pathPrefix}/img/logo_port-auto.png`,
       author: config.userName,
       copyright: config.copyright,
+    },
+    appbaseio: {
+      accessKey: "B7X4XWPDE:6b3907e8-7d47-43fb-b43b-e639e77cd781",
+      project: "portauto-2"
     },
   },
   plugins: [
@@ -37,6 +41,12 @@ module.exports = {
       options: {
         path: `${__dirname}/src/img`,
         name: 'images',
+      },
+    },
+    {
+      resolve:`gatsby-plugin-typography`,
+      options:{
+        pathToConfigModule: `src/utils/typography`,
       },
     },
     'gatsby-plugin-sharp',

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class ShippingCalculator extends Component {
     constructor(props) {
         super(props);
-        this.state = {"calculatedCost": "Contact us for an estimate", estimateAvailable:false, "selectedOrigin": "", "selectedDestination":"", "selectedPort":"", "selectedQuantity":"",   
+        this.state = {"calculatedCost": "Contact us for an estimate", "selectedOrigin": "", "selectedDestination":"", "selectedPort":"", "selectedQuantity":"",   
         "shippingList": [
             {
               "from_country": "Miami",
@@ -599,6 +599,9 @@ class ShippingCalculator extends Component {
         let selectedQuantity = "0";
         let isValuePlaceholder = value.startsWith("--") ? true: false;
 
+        console.log("dropDownSelectionChanged name, value: ", name, value);
+        console.log("isValuePlaceholder: ", isValuePlaceholder);
+
         if (name == "origin"){
             selectedOrigin = isValuePlaceholder ? "" : value;
             this.setState({"selectedOrigin":selectedOrigin});
@@ -619,7 +622,7 @@ class ShippingCalculator extends Component {
     }
 
     getEstimatedCost() {
-        // console.log("getEstimatedCost state: ", this.state);
+        console.log("getEstimatedCost state: ", this.state);
         var defaultEstimate = "Contact us for an estimate";
         var qtyKey = "qty_" + this.state.selectedQuantity;
         var result = this.state.shippingList.filter(item => item.from_country == this.state.selectedOrigin
@@ -630,20 +633,11 @@ class ShippingCalculator extends Component {
         if(result && result.length > 0){
             if(result[0]){
                 if (qtyKey in result[0]){
-                    let estimate = result[0][qtyKey];
-                    if(estimate.toUpperCase().includes("CONTACT")){
-                        //this.setState({"calculatedCost": defaultEstimate, "isEstimateAvailable": false })    
-                        return defaultEstimate;
-                    }
-                    else{
-                        //this.setState({"calculatedCost": estimate, "isEstimateAvailable": true })
-                        return estimate; 
-                    }
+                    return result[0][qtyKey];
                 } 
             }         
         }
-        
-        //this.setState({"calculatedCost": defaultEstimate, "isEstimateAvailable": false })
+
         return defaultEstimate;
 
     }
@@ -714,19 +708,50 @@ class ShippingCalculator extends Component {
 
     render() {
         return (
-                <div>    
-                    <div className="columns">
-                        <div className="column is-12">
-                            <div className="box">
-                                <div>
-                                    <div className="title is-5 has-text-weight-bold">Shipping Calculator</div>
+            
+                <div className="container is-fluid">    
+                        <div className="columns">
+                            <div className="column">
+                                <div className="box">
+                                    <div className="media">
+                                        
+                                        <div className="media-left">
+                                            <div className="title is-5 has-text-weight-bold">Shipping Calculator</div>
+                                            <div className="subtitle is-6">Use our simple calculator to estimate shipping costs.</div>
+                                        </div>
+                                        <div className="media-content">
+                                        </div>
+                                        
+
+
+                                        {/* <div className="media-right">
+                                            <button className="button is-text" onClick={()=> this.resetComponent()}>Reset</button> 
+                                        </div> */}
+                                    </div>
+                            </div>
+                                
+                            </div>
+                           
+                        </div>
+                            {/* <nav className="level">
+                                <div className="level-left">
+                                    <div className="level-item">
+                                        <div className="title is-5 has-text-weight-bold">Shipping Calculator</div>
+                                    </div>
                                     <div className="subtitle is-6">Use our simple calculator to estimate shipping costs.</div>
                                 </div>
-                                <br/>
-                                <div className="columns">
-                                    <div className="column is-3">
+                                <div className="level-item">
+                                    <div className="level-right">
+                                        <button className="button is-text" onClick={()=> this.resetComponent()}>Reset</button>
+                                    </div>
+                                </div>
+                            </nav> */}
+                       
+                            <div className="columns is-desktop is-vcentered"> 
+                                <div className="column is-6">
+                                    <div className="box">
                                         <div className="field">
-                                            <label className="heading">Origin</label>
+                                        <label className="label">Origin</label>
                                             <div className="control">
                                                 <div className="select" onChange={(e)=>this.dropDownSelectionChanged("origin", e.target.value)}>
                                                     <select>
@@ -738,11 +763,10 @@ class ShippingCalculator extends Component {
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="column is-3">
+                                        </div>  
+
                                         <div className="field">
-                                            <label className="heading">Destination</label>
+                                        <label className="label">Destination</label>
                                             <div className="control">
                                                 <div className="select" onChange={(e)=>this.dropDownSelectionChanged("destination", e.target.value)}>
                                                     <select>
@@ -754,12 +778,10 @@ class ShippingCalculator extends Component {
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div> 
-                                    </div>
+                                        </div>  
 
-                                    <div className="column is-3">
                                         <div className="field">
-                                            <label className="heading">Port</label>
+                                        <label className="label">Port</label>
                                             <div className="control">
                                                 <div className="select" onChange={(e)=>this.dropDownSelectionChanged("port", e.target.value)}>
                                                     <select>
@@ -771,12 +793,10 @@ class ShippingCalculator extends Component {
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div> 
-                                    </div>
+                                        </div>  
 
-                                    <div className="column is-3">
                                         <div className="field">
-                                            <label className="heading">Quantity</label>
+                                            <label className="label">Quantity</label>
                                             <div className="control">
                                                 <div className="select" onChange={(e)=>this.dropDownSelectionChanged("quantity", e.target.value)}>
                                                     <select>
@@ -788,27 +808,42 @@ class ShippingCalculator extends Component {
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>  
                                     </div>
                                 </div>
-                                <div className="columns">
-                                    <div className="column is-10 offset-1">
-                                        <div className="panel">
-                                            <div className="panel-heading"> 
-                                                <div className="has-text-left">
-                                                    <div className="heading">COST [USD]:</div>
-                                                </div>
-                                            </div>
-                                            <div className="panel-block">
-                                                <p className={"title has-text-centered has-text-grey-dark"}>{this.getEstimatedCost().toLocaleString()}</p>
+                                
+                                {/* <div className="column">
+                                         
+                                </div> */}
+                                {/* <div className="column">
+                                    
+                                </div> */}
+                                {/* <div className="column">                  
+                                    
+                                </div> */}
+                                
+                                <div className="column is-6 is-centered">
+                                    <div className="panel">
+                                        <div className="panel-heading"> 
+                                            <div className="has-text-left">
+                                                <div className="heading">COST [USD]:</div>
                                             </div>
                                         </div>
+                                        <div className="panel-block">
+                                            <p className="title has-text-grey-dark has-text-centered">{this.getEstimatedCost().toLocaleString()}</p>
+                                        </div>
                                     </div>
+                                        
+                                
                                 </div>
                             </div>
                         </div>
-                    </div>        
-                </div>
+                       
+                   
+                
+                
+            
+        
 
         );
     }
