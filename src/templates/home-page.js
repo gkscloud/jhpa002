@@ -9,7 +9,7 @@ import Offerings from '../components/Offerings'
 import Testimonials from '../components/Testimonials'
 import Brands from '../components/Brands'
 import SpecialOffers from '../components/SpecialOffers'
-import { ReactiveBase, ResultCard } from '@appbaseio/reactivesearch'
+import { ReactiveBase, CategorySearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDropdownList, SingleList, SingleDropdownList } from '@appbaseio/reactivesearch'
 import { Link } from 'react-router-dom'
 var language = require('../components/languagePack')
 
@@ -31,8 +31,9 @@ export const HomePageTemplate = ({
       <meta name='description' content={meta_description} />
       {/* <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"/> */}
     </Helmet>
-    <section className='hero-home-page is-medium'>
-      <div className='hero-body'>
+    
+    <section className='hero-home-page is-medium' style={{marginTop:"0px"}}>
+      <div className='hero-head'>
         <div className='container'>
           <div className='columns'>
             <div className='column is-10 is-offset-1'>
@@ -45,11 +46,115 @@ export const HomePageTemplate = ({
               </div>
             </div>
           </div>
+        {/* </div> */}
+        {/* <div className="hero-body"> */}
+          <div className='container'>
+            <div className='columns'>
+              <div className='column is-10 is-offset-1'>
+                
+                <ReactiveBase 
+                    app={appbaseio.project}
+                    credentials={appbaseio.accessKey}> 
+                  <section className='section'>
+                    <div className="card">
+                      <div className="card-header" style={{padding:"15px"}}>
+                        <h1> QUICK SEARCH </h1>
+                      </div>
+
+                      <div className="card-content" style={{padding:"10px"}}>
+                          <section>
+                            <div className="columns">
+                                <div className="column">
+                                    <SingleDropdownList
+                                        componentId="makeDropDown"
+                                        dataField="make.keyword"
+                                        title="MAKE"
+                                        placeholder="Select Make"
+                                    />
+                                </div>
+                                <div className="column">
+                                    <SingleDropdownList
+                                        componentId="modelDropDown"
+                                        dataField="model.keyword"
+                                        title="MODEL" 
+                                        selectAllLabel="All"
+                                        react={{
+                                            "and": ["makeDropDown"]
+                                        }}
+                                        placeholder="Select Model"
+                                    />
+                                </div>
+                                <div className="column">
+                                    <MultiDropdownList
+                                        componentId="yearDropDown"
+                                        dataField="year"
+                                        title="YEAR"
+                                        size={10} 
+                                        placeholder="Select Year(s)"
+                                    />
+                                </div>
+                                <div className="column">
+                                    <SingleDropdownRange
+                                        componentId="mileageDropDown"
+                                        dataField="milage"
+                                        data={
+                                            [{"start": 0, "end": 10000, "label": "< 10000"},
+                                            {"start": 0, "end": 20000, "label": "< 20000"},
+                                            {"start": 0, "end": 30000, "label": "< 30000"},
+                                            {"start": 0, "end": 40000, "label": "< 40000"},
+                                            {"start": 0, "end": 50000, "label": "< 50000"},
+                                            {"start": 0, "end": 60000, "label": "< 60000"},
+                                            {"start": 0, "end": 70000, "label": "< 70000"},
+                                            {"start": 0, "end": 80000, "label": "< 80000"},
+                                            {"start": 0, "end": 90000, "label": "< 90000"},
+                                            {"start": 0, "end": 100000, "label": "< 100000"},
+                                            {"start": 0, "end": 150000, "label": "< 150000"},
+                                            {"start": 150000, "end": 500000, "label": "> 150000"},
+                                            {"start": 200000, "end": 500000, "label": "> 200000"}]
+                                        }
+                                        title="MILEAGE (km)"
+                                        placeholder="Mileage Range"
+                                    />
+                                </div>
+
+                                <div className="column">
+                                    <SingleDropdownRange
+                                        componentId="priceDropDown"
+                                        dataField="price"
+                                        data={
+                                            [{"start": 0, "end": 5000, "label": "< 5k"},
+                                            {"start": 0, "end": 10000, "label": "< 10k"},
+                                            {"start": 0, "end": 15000, "label": "< 15k"},
+                                            {"start": 0, "end": 20000, "label": "< 20k"},
+                                            {"start": 0, "end": 25000, "label": "< 25k"},
+                                            {"start": 25000, "end": 500000, "label": "> 25k +"}]
+                                        }
+                                        title="PRICE (USD)"
+                                        placeholder="Price Range"
+                                    />
+                                </div>
+                            </div>
+                          </section>
+                      </div>
+
+                      <div className="card-footer">
+                          <div className="card-footer-item">
+                                <a className="button is-fullwidth" style={{backgroundColor:"#B80F0A", color:"#ffffff"}}>SEARCH</a>
+                          </div>
+                      </div>
+                    </div>
+                    </section>
+                </ReactiveBase>
+                </div>
+                </div>
+                </div>
+
         </div>
       </div>
     </section>
+    
 
-    <section className='section section--gradient'>
+    <section className='section section--gradient' style={{paddingTop:"0px"}}>
       <div className='container'>
           <div className='columns'>
             <div className='column is-10 is-offset-1'>
@@ -95,12 +200,12 @@ export const HomePageTemplate = ({
       <p className='subtitle is-5 has-text-centered'>{featured}</p> 
     </section>
 
-    <section className='section'>
-      {/* <div className='has-text-weight-semibold is-size-3 has-text-danger'>Special Offers</div> */}
-      <ReactiveBase 
+  <ReactiveBase 
         app={appbaseio.project}
         credentials={appbaseio.accessKey}> 
-
+    <section className='section'>
+      {/* <div className='has-text-weight-semibold is-size-3 has-text-danger'>Special Offers</div> */}
+      
         <ResultCard 
             componentId="specialOffersResult"
             dataField="featured"
@@ -131,8 +236,9 @@ export const HomePageTemplate = ({
                   };
                 }
             }/> 
-        </ReactiveBase>
+        
     </section>
+    </ReactiveBase>
     
     <section>
       <div className='container'>
@@ -149,6 +255,7 @@ export const HomePageTemplate = ({
           </div>
         </div>
     </section>
+    
     
   </div>
 )
