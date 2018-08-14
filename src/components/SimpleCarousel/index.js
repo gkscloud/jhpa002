@@ -65,7 +65,7 @@ class SimpleCarouselTemplate extends React.Component {
                         <button className="button is-dark is-outlined is-fullwidth" onClick={()=> this.showImageViewer()}>View More Images</button>
                     </div>
                     <div className="columns is-multiline is-gapless is-hidden-mobile">
-                        {this.getItems().map((item, id)=>(
+                        {this.getItems().slice(0,11).map((item, id)=>(
                             <div className="column">
                                 <figure className="image is-64x64">
                                     <img id={id} src={item} onClick={(e)=> this.showImageViewer(e.target.id)} onError={this.addDefaultSrc}/>
