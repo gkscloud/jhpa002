@@ -51,8 +51,6 @@ class CarInfoView extends Component {
         ]
         return(
             <div>
-                
-                
                     <div className="columns">
                         <div className="column">
                             <div className="box">
@@ -62,7 +60,7 @@ class CarInfoView extends Component {
                                 {/* <figure className="image is-256x256">
                                     <img src="http://via.placeholder.com/350x150"/>
                                 </figure> */}
-                                <section className="section">
+                                <section className="section" style={{paddingTop:"5px"}}>
                                     
                                     <h2 className="title is-3">{this.props.make + " " + this.props.model + " " + this.props.year} </h2>
                                     <div className="columns">

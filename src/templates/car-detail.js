@@ -3,6 +3,7 @@ import ContactForm from '../components/ContactForm'
 import CarInfoView from '../components/CarInfoView'
 import ShippingCalculator from '../components/ShippingCalculator'
 import SimpleCarousel from '../components/SimpleCarousel'
+import { Carousel } from 'react-responsive-carousel'
 
 import  { ReactiveBase, CategorySearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDropdownList, SingleList, SingleDropDownList } from '@appbaseio/reactivesearch'
 
@@ -32,6 +33,12 @@ class CarDetailView extends Component {
         else return defaultValue;
         
     }
+
+    addDefaultSrc(ev){
+        ev.target.error = null;
+        ev.target.src = "/img/default_350x150.png";
+    }
+
 
     render() {
         const productId = this.state.productId;
@@ -102,11 +109,23 @@ class CarDetailView extends Component {
                                     </div>
                                 </section>
                     
-                            <div className="container" style={{marginTop: "25px", marginBottom:"25px"}}>
+                                <div className="container" style={{marginTop: "25px", marginBottom:"25px"}}>
                                 
                                     <div className="columns">
                                         <div className="column is-8">
-                                        <SimpleCarousel images={this.safelyGetField("images", [])} />
+                                        
+                                            <Carousel showArrows={true}>
+                                                {this.safelyGetField("images", []).map(item => {
+                                                    return (
+                                                        <div>
+                                                            <img className="image" src={"https://d3innua9hpchvl.cloudfront.net/" + item} onError={this.addDefaultSrc} />>
+                                                        </div>
+                                                    );
+                                                } )}
+                                            </Carousel>
+                                        {/* <SimpleCarousel images={this.safelyGetField("images", [])} /> */}
+                                        
+                                        
                                         <br/>
                                         <CarInfoView 
                                             description={this.safelyGetField("description", "")}

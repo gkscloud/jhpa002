@@ -39,6 +39,7 @@
     "react-image-gallery": "^0.8.10",
     "react-image-lightbox": "^5.0.0",
     "react-redux": "^5.0.7",
+    "react-responsive-carousel": "^3.1.41",
     "react-share": "2.1.0",
     "react-slick": "^0.23.1",
     "typography-theme-grand-view": "^0.15.10"

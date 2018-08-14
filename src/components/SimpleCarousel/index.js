@@ -16,8 +16,9 @@ class SimpleCarouselTemplate extends React.Component {
         //need to import here because doing it outside this will cause a webpack: window is not defined error 
         //when generating static content using gatsby build
         try {
-            this.react_image_lightbox = require("react-image-lightbox");
-            this.react_image_lightbox.use();
+            // Carousel = require("react-image-lightbox").ReactImageLightbox;
+            // // this.react_image_lightbox.use();
+            // console.log("componentDidMount: ", Carousel);
         }
         catch (e){
             console.log(e)
@@ -79,7 +80,14 @@ class SimpleCarouselTemplate extends React.Component {
                     </span>
                 </footer> */}
 
-                {isOpen && (<LightBox 
+                {/* {isOpen && (<Carousel>
+
+
+
+                            </Carousel>)
+                } */}
+
+                {/* {isOpen && (<Lightbox
                     mainSrc={images[photoIndex]}
                     nextSrc={images[(photoIndex + 1) % images.length]}
                     prevSrc={images[(photoIndex + images.length-1) % images.length]}
@@ -96,7 +104,7 @@ class SimpleCarouselTemplate extends React.Component {
                     }
 
                     }/>)
-                }
+                } */}
                 {/* <div className="columns">
                     <div className="column is-10">
                         <img src={this.state.defaultImg}/>
