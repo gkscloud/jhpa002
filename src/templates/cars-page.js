@@ -169,7 +169,7 @@ class CarsPage extends Component {
                                                                 <div className="columns is-gapless" style={{marginBottom: "0px"}}>
                                                                     <div className="column is-4">
                                                                         <figure className="image" style={{padding:"0px"}}>
-                                                                            <img src={"http://static.portauto.org/" + res.images[0]}/>
+                                                                            <img src={"https://s3.us-east-2.amazonaws.com/assets.portauto.org/images/" + res.images[0]}/>
                                                                         </figure>
                                                                     </div>
                                                                     <div className="column">

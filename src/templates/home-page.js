@@ -225,7 +225,7 @@ export const HomePageTemplate = ({
               }}
               onData={(res)=> {
                     return {
-                      image: "http://static.portauto.org/" + res.images[0],
+                      image: "https://s3.us-east-2.amazonaws.com/assets.portauto.org/images/" + res.images[0],
                       title: res.name,
                       description: (
                           <div>
