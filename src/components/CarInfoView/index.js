@@ -67,14 +67,14 @@ class CarInfoView extends Component {
                                         <div className="column is-4">
                                             <div>
                                                 <p className="heading">PRICE</p>
-                                                <p className="title is-3">${this.props.price}</p>
+                                                <p className="title is-3">${this.props.price.toLocaleString()}</p>
                                                 <p className="subtitle is-7">+ ADMIN. FEE</p>
                                             </div>
                                         </div>
                                         <div className="column">
                                             <div>
                                                 <p className="heading">MILEAGE</p>
-                                                <p className="title is-3">{this.props.milage} KM</p>
+                                                <p className="title is-3">{this.props.milage.toLocaleString()} KM</p>
                                             </div>
                                         </div>
                                     {/* <div className="subtitle is-3 has-text-weight-bold">${this.props.price}</div> */}
