@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import LightBox from 'react-image-lightbox'
-
 
 class SimpleCarouselTemplate extends React.Component {
     constructor(props){
