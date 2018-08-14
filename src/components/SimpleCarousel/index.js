@@ -31,7 +31,7 @@ class SimpleCarouselTemplate extends React.Component {
 
     getItems(){
         if(this.state.items && this.state.items.length > 0) {
-            return this.state.items.map(item => "http://static.portauto.org/" + item);
+            return this.state.items.map(item => "https://d3innua9hpchvl.cloudfront.net/" + item);
         }
         else {
             let arr = Array(this.state.defaultSize).fill(this.state.defaultImg)
