@@ -105,7 +105,7 @@ class CarInfoView extends Component {
                                                 <ul className="has-text-grey-dark"><strong>Color: </strong> {this.props.ext_color} </ul>
                                                 <ul className="has-text-grey-dark"><strong>Stock: </strong> {this.props.stock} </ul>
                                                 <ul className="has-text-grey-dark"><strong>Condition: </strong> {this.props.condition} </ul>
-                                                <ul className="has-text-grey-dark"><strong>CarFax: </strong> <a href={this.props.carfax}>Link To Report</a> </ul>
+                                                <ul className="has-text-grey-dark"><strong>CarFax: </strong> <a href={this.props.carfax} target="_blank">Link To Report</a> </ul>
                                             </div>
                                         </div> 
                                     </div>

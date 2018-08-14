@@ -162,35 +162,34 @@ class CarsPage extends Component {
                                                 URLParams={true}
                                                 onData={(res) => {
                                                     return {
-                                                        image: "",
+                                                        image: "http://static.portauto.org/" + res.images[0],
                                                         title: res.name,
                                                         description: (
-                                                            
-                                                                <div className="columns is-gapless" style={{marginBottom: "0px"}}>
-                                                                    <div className="column is-4">
-                                                                        <figure className="image" style={{padding:"0px"}}>
-                                                                            <img src={"http://static.portauto.org/" + res.images[0]}/>
-                                                                        </figure>
+                                                            <div className="columns">
+                                                                <div className="column">
+                                                                    <div className="title is-6">
+                                                                        {res.make + " " + res.model + " " + res.year}
                                                                     </div>
-                                                                    <div className="column">
-                                                                        <div style={{padding: "10px"}}>
-                                                                            <p className="heading">{res.condition}</p>
-                                                                            <div className="title is-5">
-                                                                                {res.make + " " + res.model + " " + res.year}
-                                                                            </div>
-                                                                            <p className="subtitle is-3" style={{marginBottom: "0px"}} ><strong>${res.price.toLocaleString()}</strong></p>
-                                                                            <p className="subtitle is-6 is-italic"> {res.milage.toLocaleString()} KM</p>
-                                                                            
-                                                                            <p className="heading"><strong>transmission: </strong> {res.transmission} </p>
-                                                                            <p className="heading"><strong>drive train: </strong> {res.drivetrain} </p>
-                                                                            <p className="heading"><strong>exterior color: </strong> {res.ext_color} </p>
-                                                                            <CarFaxReport item={res.carfax}/>
-                                                                            <hr/>
-                                                                                
-                                                                        </div>
-                                                                        
+                                                                    <p className="subtitle is-5"><strong>${res.price}</strong></p>
+                                                                    <p><strong>Mileage:</strong> {res.milage} km </p>
+                                                                    <CarFaxReport item={res.carfax} />
+
+                                                                    <div>
+                                                                        <p><strong>Transmission: </strong> {res.transmission}</p>
+                                                                        <p><strong>Drive Train: </strong> {res.drivetrain}</p>
+                                                                        <p><strong>Ext. Color: </strong> {res.ext_color}</p>
                                                                     </div>
+                                                                </div>
                                                                 
+                                                                <div className="column">
+                                                                    
+
+                                                                    <div>
+                                                                        <p><strong>Description:</strong></p>
+                                                                        <div> {res.description == null? 'None' : res.description.substring(0,100)} ... </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
                                                             </div>),
                                                             containerProps:{
                                                                 onClick: () => this.setRedirect({res})

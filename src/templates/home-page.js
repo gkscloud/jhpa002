@@ -153,7 +153,11 @@ export const HomePageTemplate = ({
       </div>
     </section>
     
-
+    <section className='section primary-background'>
+      <h2 className='has-text-weight-semibold is-size-3 has-text-centered'>Special Offers</h2>
+      <p className='subtitle is-5 has-text-centered'>{featured}</p> 
+    </section>
+                                
     <section className='section section--gradient' style={{paddingTop:"0px"}}>
       <div className='container'>
           <div className='columns'>
@@ -179,65 +183,66 @@ export const HomePageTemplate = ({
       </div>
     </section>
 
-    <section className='section primary-background'>
-      <h2 className='has-text-weight-semibold is-size-3 has-text-centered'>Brands</h2>
-      <p className='subtitle is-5 has-text-centered'>{brands.description}</p> 
-    </section>
+  <div className="hide-mobile">
+      <section className='section primary-background'>
+        <h2 className='has-text-weight-semibold is-size-3 has-text-centered'>Search By Car Manufacturers</h2>
+        <p className='subtitle is-5 has-text-centered'>{brands.description}</p> 
+      </section>
 
-    <section>
-      <div className='container'>
-          <div className='columns'>
-            <div className='column is-10 is-offset-1'>
-              <br/>
-              <Brands brands={brands.items} />
+      <section>
+        <div className='container'>
+            <div className='columns'>
+              <div className='column is-10 is-offset-1'>
+                <br/>
+                <Brands brands={brands.items} />
+              </div>
             </div>
           </div>
-        </div>
-    </section>
+      </section>
+  </div>
 
-    <section className='section primary-background'>
-      <h2 className='has-text-weight-semibold is-size-3 has-text-centered'>Special Offers</h2>
-      <p className='subtitle is-5 has-text-centered'>{featured}</p> 
-    </section>
+  <section className='section primary-background'>
+      <h2 className='has-text-weight-semibold is-size-3 has-text-centered'>Featured Inventory</h2>
+  </section>
 
   <ReactiveBase 
         app={appbaseio.project}
         credentials={appbaseio.accessKey}> 
-    <section className='section'>
-      {/* <div className='has-text-weight-semibold is-size-3 has-text-danger'>Special Offers</div> */}
-      
-        <ResultCard 
-            componentId="specialOffersResult"
-            dataField="featured"
-            stream={true}
-            pagination={false}
-            size={3}
-            showResultStats = {false}
-            defaultQuery={function(){
-              return {
-                "match": {"featured": true}
-              }
-            }}
-            onData={(res)=> {
-                  return {
-                    image: "https://bit.do/demoimg",
-                    title: res.name,
-                    description: (
-                        <div>
-                          <div className="title is-6">
-                              {res.make + " " + res.model + " " + res.year}
-                          </div>
-                            {/* <p className="subtitle is-5"><strong>${res.price}</strong></p>
-                            <p><strong>Mileage:</strong> {res.milage} km </p> */}
-                          <p className="subtitle is-6">{res.offer_details}</p>
-                          <Link to={{pathname:"/carDetail/?id=" + res.id, state:{data: res}}}> View Listing</Link>
-                        </div>
-                    )
-                  };
-                }
-            }/> 
+      <section className='section'>
+        {/* <div className='has-text-weight-semibold is-size-3 has-text-danger'>Special Offers</div> */}
         
-    </section>
+          <ResultCard 
+              componentId="specialOffersResult"
+              dataField="featured"
+              stream={true}
+              pagination={false}
+              size={4}
+              showResultStats = {false}
+              defaultQuery={function(){
+                return {
+                  "match": {"featured": true}
+                }
+              }}
+              onData={(res)=> {
+                    return {
+                      image: "http://static.portauto.org/" + res.images[0],
+                      title: res.name,
+                      description: (
+                          <div>
+                            <div className="title is-6">
+                                {res.make + " " + res.model + " " + res.year}
+                            </div>
+                            <p className="subtitle is-5" style={{marginBottom: "0px"}}><strong>${res.price.toLocaleString()}</strong></p>
+                            <p>{res.milage.toLocaleString()} km </p>
+                            {/* <p className="subtitle is-6">{res.offer_details}</p> */}
+                            <Link to={{pathname:"/carDetail/?id=" + res.id, state:{data: res}}}> View Listing</Link>
+                          </div>
+                      )
+                    };
+                  }
+              }/> 
+          
+      </section>
     </ReactiveBase>
     
     <section>

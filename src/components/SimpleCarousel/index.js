@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import LightBox from 'react-image-lightbox'
 
 
 class SimpleCarouselTemplate extends React.Component {
@@ -7,7 +8,7 @@ class SimpleCarouselTemplate extends React.Component {
         super(props);
         this.state = {items:this.props.items, 
             defaultSize:10, 
-            defaultImg:"http://via.placeholder.com/350x150",
+            defaultImg:"/img/default_350x150.png",
             currentImg: '',
             photoIndex: 0,
             isOpen: false }
@@ -25,9 +26,14 @@ class SimpleCarouselTemplate extends React.Component {
         }
     }
 
+    addDefaultSrc(ev){
+        ev.target.error = null;
+        ev.target.src = "/img/default_350x150.png";
+      }
+
     getItems(){
         if(this.state.items && this.state.items.length > 0) {
-            return this.state.items;
+            return this.state.items.map(item => "http://static.portauto.org/" + item);
         }
         else {
             let arr = Array(this.state.defaultSize).fill(this.state.defaultImg)
@@ -51,17 +57,19 @@ class SimpleCarouselTemplate extends React.Component {
 
         return (
             <div className="card">
-                <div className="card-image">
-                    <img src={images[0]} onClick={()=> this.showImageViewer(0)}/>
+                <div className="card-image" style={{padding:"10px"}}>
+                    <figure className="image is-256x256"> <img src={images[0]} onClick={()=> this.showImageViewer(0)} onError={this.addDefaultSrc}/> </figure>
                 </div>
-                <div className="card-content">
-                    <div className="hide-desktop" style={{padding:"5px"}}>
-                        <button className="button is-outlined is-fullwidth" onClick={()=> this.showImageViewer()}>View Images</button>
+                <div className="card-content" style={{padding:"5px"}} >
+                    <div className="is-hidden-tablet">
+                        <button className="button is-dark is-outlined is-fullwidth" onClick={()=> this.showImageViewer()}>View More Images</button>
                     </div>
-                    <div className="columns is-mobile is-multiline is-gapless">
+                    <div className="columns is-multiline is-gapless is-hidden-mobile">
                         {this.getItems().map((item, id)=>(
-                            <div className="column hide-mobile">
-                                <img id={id} className="image is-64x64" src={item} onClick={(e)=> this.showImageViewer(e.target.id)}/>
+                            <div className="column">
+                                <figure className="image is-64x64">
+                                    <img id={id} src={item} onClick={(e)=> this.showImageViewer(e.target.id)} onError={this.addDefaultSrc}/>
+                                </figure>
                             </div>
                         ))}
                         

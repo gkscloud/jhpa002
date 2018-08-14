@@ -12,10 +12,13 @@ class ContactForm extends Component {
             name: '',
             email: '',
             password: '',
-            formErrors: {email: '', name: '', message: ''},
+            phone: '',
+            country: '',
+            formErrors: {email: '', name: '', message: '', country: ''},
             emailValid: false,
             nameValid: false,
             msgValid: false,
+            countryValid: false,
             formValid: false
         }
     }
@@ -37,6 +40,7 @@ class ContactForm extends Component {
         let emailValid = this.state.emailValid;
         let nameValid = this.state.nameValid;
         let msgValid = this.state.msgValid;
+        let countryValid = this.state.countryValid;
 
         switch(name){
             case 'email':
@@ -51,18 +55,26 @@ class ContactForm extends Component {
                 msgValid = value.trim().length > 0;
                 fieldValidationErrors.message = msgValid ? '': ' cannot be empty!';
                 break;
+            case 'country':
+                countryValid = value.trim().length > 0;
+                fieldValidationErrors.country = countryValid ? '': ' cannot be empty';
+                break;
             default:
                 break;
         }
         this.setState({formErrors: fieldValidationErrors,
             emailValid: emailValid,
             nameValid: nameValid,
-            msgValid: msgValid
+            msgValid: msgValid,
+            countryValid: countryValid
           }, this.validateForm);
     }
 
     validateForm(){
-        this.setState({formValid: this.state.nameValid && this.state.emailValid && this.state.msgValid});
+        this.setState({formValid: this.state.nameValid 
+            && this.state.emailValid 
+            && this.state.msgValid
+            && this.state.countryValid});
     }
     render() {
         return (
@@ -113,6 +125,32 @@ class ContactForm extends Component {
                                 </div>
 
                                 <div className="field">
+                                    <label className="label">Phone #</label>
+                                    <div className="control has-icons-left has-icons-right">
+                                        <input className="input " name="phone" type="tel" placeholder="Enter your phone number" value={this.state.phone} onChange={(event) => this.handleUserInput(event)}/>
+                                        <span className="icon is-small is-left">
+                                        <i className="fas fa-phone"></i>
+                                        </span>
+                                        <span className="icon is-small is-right">
+                                        <i className="fas fa-exclamation-triangle"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="field">
+                                    <label className="label">Country</label>
+                                    <div className="control has-icons-left has-icons-right">
+                                        <input className="input " name="country" type="text" placeholder="Specify your country" value={this.state.country} onChange={(event) => this.handleUserInput(event)}/>
+                                        <span className="icon is-small is-left">
+                                        <i className="fas fa-globe"></i>
+                                        </span>
+                                        <span className="icon is-small is-right">
+                                        <i className="fas fa-exclamation-triangle"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="field">
                                     <label className="label">Message</label>
                                     <div className="control">
                                         <textarea className="textarea" placeholder="Message Text" name="message" onChange={(event) => this.handleUserInput(event)}></textarea>
@@ -128,8 +166,7 @@ class ContactForm extends Component {
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    
+                        </div>   
         
         )
     }

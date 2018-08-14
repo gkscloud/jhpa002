@@ -9,7 +9,7 @@ class CarFaxReport extends Component {
     render() {
         return (
             <div>
-                <strong>CarFax Report: </strong>{this.state.hasItem}
+                <p className="heading"><strong>CarFax Report: </strong>{this.state.hasItem}</p>
             </div>
         );
 

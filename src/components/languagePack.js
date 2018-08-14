@@ -1,4 +1,4 @@
-const availableLanguagePacks = {"English":"en", "русский":"ru"}
+const availableLanguagePacks = {"English":"en", "Русский":"ru"}
 
 const locales = {
     'home': {
@@ -23,7 +23,7 @@ const locales = {
     },
     'contact':{
         "en": "Contact",
-        "ru": "контакт"
+        "ru": "Контакт"
     },
     'about':{
         "en": "About Us",
@@ -35,7 +35,7 @@ const locales = {
     },
     'toggleLanguage': {
         "en": "Language",
-        "ru": "язык"
+        "ru": "Язык"
     }
 
 }

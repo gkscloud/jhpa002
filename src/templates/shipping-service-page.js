@@ -38,6 +38,9 @@ export const ShippingServicePageTemplate = ({title, content, contentComponent}) 
                 <PageContent className='content' content={content} />
               </div>
               <ShippingCalculator />
+              <figure className="image is-256x256">
+                <img src="/img/usa ports map_2018_08_06.png"/>
+              </figure>
             </div>
           </div>
         </div>
