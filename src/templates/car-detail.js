@@ -148,7 +148,7 @@ class CarDetailView extends Component {
                                         <ShippingCalculator />
                                         </div>
                                         <div className="column">
-                                            <ContactForm formId="car-detail-inquiry" formData={this.state.navData} />
+                                            <ContactForm formId="car-detail-inquiry" formData={this.state.prodData} />
                                         </div>
                                     </div>
                             </div>
