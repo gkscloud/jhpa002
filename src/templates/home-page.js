@@ -99,7 +99,7 @@ class HomePageTemplate extends React.Component {
                                                       selectAllLabel="All"
                                                       defaultSelected = "All"
                                                       react={{
-                                                          "and": ["makeDropDown"]
+                                                          "and": ["make"]
                                                       }}
                                                       placeholder="Select Model"
                                                       onValueChange={

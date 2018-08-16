@@ -1,5 +1,25 @@
 module.exports = {
 
+    getExteriorColors(){
+        var result = []
+        var colors = ["Blue", "Black", "Metallic", "Red", "White", "Silver", "Brown", "Green", "Steel", "Gray", "Yellow"];
+        colors.map(item => {
+            result.push({"label": item, "value": item})
+        });
+
+        return result;
+    },
+    
+    getTransmissionTypes(){
+        var result = []
+        var transmissionTypes = ["Automatic", "Automatic CVT", "Manual"];
+        transmissionTypes.map(item => {
+            result.push({"label": item, "value": item})
+        });
+
+        return result;
+    },
+
     getMileages(){
         var maxMileage = 450000;
         var minMileage = 1000;

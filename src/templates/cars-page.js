@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
-import  { ReactiveBase, SelectedFilters, CategorySearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDropdownList, SingleList, SingleDropDownList } from '@appbaseio/reactivesearch'
+import  { ReactiveBase, SelectedFilters, CategorySearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDataList, MultiDropdownList, SingleList, SingleDropDownList } from '@appbaseio/reactivesearch'
 import { navigateTo } from 'gatsby-link'
 import CarFaxReport from '../components/CarFaxReport'
 import CarInfoView from '../components/CarInfoView'
@@ -170,7 +170,7 @@ class CarsPage extends Component {
                                         {/* <div className="media"> */}
                                             {/* <div className="media-left hide-mobile"> */}
                                                 <SingleRange
-                                                            componentId="maxYear"
+                                                            componentId="maxYearFilter"
                                                             title="Max. Year"
                                                             dataField="year"
                                                             data={internalGetYears()}
@@ -179,7 +179,7 @@ class CarsPage extends Component {
                                                 />
 
                                                 <MultiList 
-                                                    componentId="make"
+                                                    componentId="makeFilter"
                                                     dataField="make.keyword"
                                                     title="Filter By Make"
                                                     size={100}
@@ -201,12 +201,12 @@ class CarsPage extends Component {
                                                     sortBy="asc"
                                                     defaultSelected={[model]}
                                                     react={{
-                                                        and: ["listMake"]
+                                                        and: ["makeFilter"]
                                                     }} 
                                                     style={{marginBottom:"10px"}}/>
 
                                                 <SingleRange
-                                                    componentId="maxPrice"
+                                                    componentId="maxPriceFilter"
                                                     title="Max. Price"
                                                     dataField="price"
                                                     data={internalGetPrices()}
@@ -215,7 +215,7 @@ class CarsPage extends Component {
                                                 />
 
                                                 <SingleRange
-                                                    componentId="mileage"
+                                                    componentId="mileageFilter"
                                                     title="Max. mileage"
                                                     dataField="milage"
                                                     data={internalGetMileages()}
@@ -223,30 +223,59 @@ class CarsPage extends Component {
                                                     style={{marginBottom:"10px"}}
                                                 />
 
-                                                <MultiList 
-                                                    componentId="transmission"
-                                                    dataField="transmission.keyword"
+                                                <MultiDataList 
+                                                    componentId="transmissionFilter"
+                                                    dataField="transmission"
                                                     title="Transmission Type"
-                                                    size={10}
-                                                    selectAllLabel="All"
+                                                    data={searchParams.getTransmissionTypes()}
                                                     showSearch={false}
-                                                    placeholder="Search transmission"
-                                                    filterLabel="transmission"
-                                                    sortBy="asc"
-                                                    defaultSelected={["All"]} 
+                                                    customQuery={function(value,props){
+                                                        // console.log("selected transmission: ", value);
+                                                        if(value[0]){
+                                                                return {
+                                                                        "query_string": {
+                                                                            "default_field": "transmission",
+                                                                            "query": value[0]
+                                                                        }
+                                                                    }
+                                                            }
+                                                            else{
+                                                                // console.log("else query");
+                                                                return {
+                                                                    "match_all": {}
+                                                                }
+                                                            }
+                                                        }
+
+                                                    }
                                                     style={{marginBottom:"10px"}}/>
                                             
-                                                <MultiList 
-                                                        componentId="exteriorColor"
-                                                        dataField="ext_color.keyword"
-                                                        title="Ext. Color"
-                                                        size={100}
-                                                        selectAllLabel="All"
-                                                        showSearch={false}
-                                                        filterLabel="ext_color"
-                                                        sortBy="asc"
-                                                        defaultSelected={["All"]} 
-                                                        style={{marginBottom:"10px"}}/>
+                                            <MultiDataList 
+                                                    componentId="exteriorColorFilter"
+                                                    dataField="ext_color"
+                                                    title="Exterior Color"
+                                                    data={searchParams.getExteriorColors()}
+                                                    showSearch={false}
+                                                    customQuery={function(value,props){
+                                                        // console.log("selected color: ", value);
+                                                        if(value[0]){
+                                                                return {
+                                                                        "query_string": {
+                                                                            "default_field": "ext_color",
+                                                                            "query": value[0]
+                                                                        }
+                                                                    }
+                                                            }
+                                                            else{
+                                                                // console.log("else query");
+                                                                return {
+                                                                    "match_all": {}
+                                                                }
+                                                            }
+                                                        }
+
+                                                    }
+                                                    style={{marginBottom:"10px"}}/>
                                             {/* </div> */}
 
                                     </div>
@@ -265,7 +294,7 @@ class CarsPage extends Component {
                                                         size={5}
                                                         pagination={true}
                                                         react={{
-                                                            and: ["maxYear", "make", "model", "maxPrice", "mileage", "transmission", "exteriorColor"]
+                                                            and: ["maxYearFilter", "makeFilter", "modelFilter", "maxPriceFilter", "mileageFilter", "transmissionFilter", "exteriorColorFilter"]
                                                         }}
                                                         URLParams={true}
                                                         onData={(res) => {
