@@ -32,7 +32,7 @@ class ContactForm extends Component {
         const value = e.target.value;
         this.setState({[name]: value}, 
                         () => {this.validateField(name,value)});
-        console.log("set state ", this.state)
+        // console.log("set state ", this.state)
     } 
 
     validateField (name, value){
@@ -77,6 +77,7 @@ class ContactForm extends Component {
             && this.state.countryValid});
     }
     render() {
+        // console.log("Form data: ", this.props.formData);
         return (
                 
                         <div className="box">
@@ -174,7 +175,7 @@ class ContactForm extends Component {
 
 ContactForm.propTypes = {
     formId: PropTypes.string,
-    formData: PropTypes.object
+    formData: PropTypes.string
 }
 
 export default ContactForm

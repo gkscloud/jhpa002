@@ -41,14 +41,6 @@ class CarInfoView extends Component {
     }
 
     render() {
-        let images = [
-            '/img/2017_mercedes-amg_c63_coupe_84_1680x617.jpg',
-            '/img/2016_nissan_altima_sr_2_1680x617.jpg',
-            'http://via.placeholder.com/1680x617',
-            '/img/2016_lexus_rx_4_1680x617.jpg',
-            '/img/2018_toyota_camry_9_1680x617.jpg',
-            
-        ]
         return(
             <div>
                     <div className="columns">

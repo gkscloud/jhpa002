@@ -6,6 +6,7 @@ import SimpleCarousel from '../components/SimpleCarousel'
 import { Carousel } from 'react-responsive-carousel'
 
 import  { ReactiveBase, CategorySearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDropdownList, SingleList, SingleDropDownList } from '@appbaseio/reactivesearch'
+import { Redirect } from 'react-router';
 
 class CarDetailView extends Component {
     constructor(props) {
@@ -42,6 +43,10 @@ class CarDetailView extends Component {
 
     render() {
         const productId = this.state.productId;
+
+        if(!productId){
+            return <Redirect to={"/cars/"}/>
+        }
 
         if(!this.state.prodData){
             return (
@@ -115,9 +120,9 @@ class CarDetailView extends Component {
                                         <div className="column is-8">
                                         
                                             <Carousel showArrows={true}>
-                                                {this.safelyGetField("images", []).map(item => {
+                                                {this.safelyGetField("images", []).map((item,id) => {
                                                     return (
-                                                        <div>
+                                                        <div key={id}>
                                                             <img className="image" src={"https://d3innua9hpchvl.cloudfront.net/" + item} onError={this.addDefaultSrc} />>
                                                         </div>
                                                     );
@@ -135,7 +140,7 @@ class CarDetailView extends Component {
                                             price={this.safelyGetField("price", "")}
                                             all_features={this.safelyGetField("all_features", "")}
                                             milage={this.safelyGetField("milage", "")}
-                                            tranmission={this.safelyGetField("transmission", "")}
+                                            transmission={this.safelyGetField("transmission", "")}
                                             fuel_type={this.safelyGetField("fuel_type", "")}
                                             engine={this.safelyGetField("engine", "")}
                                             drivetrain={this.safelyGetField("drivetrain", "")}
