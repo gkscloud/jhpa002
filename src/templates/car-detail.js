@@ -21,7 +21,7 @@ class CarDetailView extends Component {
             this.state = {productId: params.get('id')}
         }
         
-        // console.log("CarDetail props: ", this.props);
+        //console.log("CarDetail props: ", this.props);
     }
 
     safelyGetField(fieldName, defaultValue){
@@ -148,7 +148,7 @@ class CarDetailView extends Component {
                                         <ShippingCalculator />
                                         </div>
                                         <div className="column">
-                                            <ContactForm formId="car-detail-inquiry" formData={this.state.prodData} />
+                                            <ContactForm formId="car-detail-inquiry" formData={this.props.location.pathname + this.props.location.search} />
                                         </div>
                                     </div>
                             </div>

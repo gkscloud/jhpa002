@@ -2,7 +2,7 @@
  * Created by vaibhav on 31/3/18
  */
 import React, {Component} from 'react'
-import favicon from './img/favicon.ico'
+import icon_simple from './img/icon_simple.ico'
 
 let inlinedStyles = ''
 if (process.env.NODE_ENV === 'production') {
@@ -32,7 +32,7 @@ export default class HTML extends Component {
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
           {this.props.headComponents}
-          <link rel='shortcut icon' href={favicon} />
+          <link rel='shortcut icon' href={icon_simple} />
           {css}
         </head>
         <body>
