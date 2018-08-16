@@ -3,15 +3,15 @@
  */
 module.exports = {
   siteTitle: 'Port Auto', // Site title.
-  siteTitleAlt: 'Buy Cars', // Alternative site title for SEO.
+  siteTitleAlt: 'Buy & Sell Cars', // Alternative site title for SEO.
   siteLogo: '/img/logo_port-auto.png', // Logo used for SEO and manifest.
-  siteUrl: 'https://gatsby-starter-business.netlify.com', // Domain of your website without pathPrefix.
+  siteUrl: 'https://www.portauto.org/', // Domain of your website without pathPrefix.
   pathPrefix: '/', // Prefixes all links. For cases when deployed to example.github.io/gatsby-starter-business/.
-  siteDescription: 'Buy & Sell Cars.', // Website description used for RSS feeds/meta description tag.
+  siteDescription: 'Buy & Sell Cars', // Website description used for RSS feeds/meta description tag.
   siteRss: '/rss.xml',
   siteFBAppID: '', // FB Application ID for using app insights
   googleTagManagerID: '', // GTM tracking ID.
-  disqusShortname: 'gatsby-business-starter', // Disqus shortname.
+  disqusShortname: 'portauto-org', // Disqus shortname.
   userName: 'JH',
   userTwitter: '',
   userLocation: '',

@@ -19,7 +19,7 @@ module.exports = {
       copyright: config.copyright,
     },
     appbaseio: {
-      accessKey: "B7X4XWPDE:6b3907e8-7d47-43fb-b43b-e639e77cd781",
+      accessKey: "VFmQym0TP:0f1c1fe1-004a-477e-85a4-b3bb99e77fe6",
       project: "portauto-2"
     },
   },

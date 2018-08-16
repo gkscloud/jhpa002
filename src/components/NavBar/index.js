@@ -69,8 +69,7 @@ class NavBar extends React.Component {
                   <div className="navbar-dropdown">
                   {language.getLanguages().map((item, id)=>{
                     return (  
-                        
-                        <a id={id} className="navbar-item" onClick={()=>this.handleLanguageChange(item)}>
+                        <a key={id} className="navbar-item" onClick={()=>this.handleLanguageChange(item)}>
                             {item} 
                         </a>
                         

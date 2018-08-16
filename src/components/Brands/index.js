@@ -8,8 +8,8 @@ const Brands = ({brands}) => (
   
       <div className="columns is-multiline">
         {brands.map((brand, id) => (
-            <div className="column is-2">
-              <figure key={id} className="image is-96x96">
+            <div key={id} className="column is-2">
+              <figure className="image is-96x96">
                   <img className="is-rounded" src={brand.image} style={{opacity:0.4, verticalAlign: "center" }} />
               </figure>
             </div>

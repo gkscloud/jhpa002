@@ -97,11 +97,11 @@ class ContactForm extends Component {
                                     <div className="control has-icons-left has-icons-right">
                                         <input className="input"  name="name" type="text" placeholder="Your name here" value={this.state.user} onChange={(event) => this.handleUserInput(event)}/>
                                         <span className="icon is-small is-left">
-                                        <i className="fas fa-user"></i>
+                                        <i className="fa fa-user"></i>
                                         </span>
-                                        <span className="icon is-small is-right">
-                                        <i className="fas fa-check"></i>
-                                        </span>
+                                        {/* <span className="icon is-small is-right">
+                                        <i className="fa fa-check"></i>
+                                        </span> */}
                                     </div>
                                     {/* + (this.state.nameValid ? 'is-success': 'is-danger') */}
                                     {/* <p className="help is-danger">Name cannot be blank!</p> */}
@@ -113,11 +113,11 @@ class ContactForm extends Component {
                                     <div className="control has-icons-left has-icons-right">
                                         <input className="input " name="email" type="email" placeholder="Enter a valid email" value={this.state.email} onChange={(event) => this.handleUserInput(event)}/>
                                         <span className="icon is-small is-left">
-                                        <i className="fas fa-envelope"></i>
+                                        <i className="fa fa-envelope"></i>
                                         </span>
-                                        <span className="icon is-small is-right">
-                                        <i className="fas fa-exclamation-triangle"></i>
-                                        </span>
+                                        {/* <span className="icon is-small is-right">
+                                        <i className="fa fa-exclamation-triangle"></i>
+                                        </span> */}
                                     </div>
                                 {/* + (this.state.emailValid ? 'is-success': 'is-danger') */}
                                 {/* <p className="help is-danger">This email is invalid</p> */}
@@ -129,11 +129,11 @@ class ContactForm extends Component {
                                     <div className="control has-icons-left has-icons-right">
                                         <input className="input " name="phone" type="tel" placeholder="Enter your phone number" value={this.state.phone} onChange={(event) => this.handleUserInput(event)}/>
                                         <span className="icon is-small is-left">
-                                        <i className="fas fa-phone"></i>
+                                        <i className="fa fa-phone"></i>
                                         </span>
-                                        <span className="icon is-small is-right">
-                                        <i className="fas fa-exclamation-triangle"></i>
-                                        </span>
+                                        {/* <span className="icon is-small is-right">
+                                        <i className="fa fa-exclamation-triangle"></i>
+                                        </span> */}
                                     </div>
                                 </div>
 
@@ -142,11 +142,11 @@ class ContactForm extends Component {
                                     <div className="control has-icons-left has-icons-right">
                                         <input className="input " name="country" type="text" placeholder="Specify your country" value={this.state.country} onChange={(event) => this.handleUserInput(event)}/>
                                         <span className="icon is-small is-left">
-                                        <i className="fas fa-globe"></i>
+                                        <i className="fa fa-globe"></i>
                                         </span>
-                                        <span className="icon is-small is-right">
-                                        <i className="fas fa-exclamation-triangle"></i>
-                                        </span>
+                                        {/* <span className="icon is-small is-right">
+                                        <i className="fa fa-exclamation-triangle"></i>
+                                        </span> */}
                                     </div>
                                 </div>
 

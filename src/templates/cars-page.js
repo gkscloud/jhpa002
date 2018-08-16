@@ -1,23 +1,119 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
-import  { ReactiveBase, CategorySearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDropdownList, SingleList, SingleDropDownList } from '@appbaseio/reactivesearch'
+import  { ReactiveBase, SelectedFilters, CategorySearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDropdownList, SingleList, SingleDropDownList } from '@appbaseio/reactivesearch'
 import { navigateTo } from 'gatsby-link'
 import CarFaxReport from '../components/CarFaxReport'
 import CarInfoView from '../components/CarInfoView'
 import SingleDropdownList from '../../node_modules/@appbaseio/reactivesearch/lib/components/list/SingleDropdownList';
+var searchParams = require('../application/searchParams')
 
 class CarsPage extends Component {
     constructor(props) {
         super(props);
         // console.log("CarsPage props: ", props)
-        this.state = {redirect: false, selectedItem: ''};
+        let parameters = null;
+        if(this.props.location.search){
+            parameters = new URLSearchParams(this.props.location.search);
+            console.log("CarsPage UrlSearchParams: ", parameters.get('make'));
+        }
+
+        this.state = {redirect: false, selectedItem: '', params: parameters};
     }
 
     setRedirect(item) {
         this.setState({redirect: true, selectedItem: item.res});
-        console.log("setRedirect: ", item);
+        console.log("setRedirect on Cars-Page: ", item);
     }
+
+    getParameter(name){
+        var result = "All";
+        if(this.state.params){
+            result = this.state.params.get(name) ? this.state.params.get(name) : "All"; 
+            
+            if(!isNaN(result)){
+                return parseInt(result);
+            }
+        }
+        
+        return result;
+        
+
+    }
+
+    // getYears(){
+    //     var latestYear = new Date().getFullYear() + 1;
+    //     var minYear = latestYear - 20;
+    //     var allYears = [];
+    //     for (var i=minYear; i<=latestYear; i++ ){
+    //         var start = 0;
+    //         var end = 0;
+    //         var label = "";
+    //         if(i == latestYear){
+    //             start = minYear;
+    //             end = latestYear;
+    //             label = "All";
+    //         }
+    //         else{
+    //             start = minYear;
+    //             end = i;
+    //             label = i.toString();
+    //         }
+    //         allYears.push({"start": start, "end": end, "label": label});
+    //     }
+    //     console.log("allYears: ", allYears);
+    //     return allYears.reverse();
+    // }
+
+    // getPrices(){
+    //     var maxPrice = 170000;
+    //     var minPrice = 0;
+    //     var interval = 10000;
+    //     var prices = [];
+    //     for (var i=minPrice; i<=maxPrice; i=i+interval ){
+    //         var start = 0;
+    //         var end = 0;
+    //         var label = "";
+    //         if(i == maxPrice){
+    //             start = minPrice;
+    //             end = maxPrice;
+    //             label = "All";
+    //         }
+    //         else{
+    //             start = minPrice;
+    //             end = i;
+    //             label = i.toLocaleString();
+    //         }
+    //         prices.push({"start": start, "end": end, "label": label});
+
+    //     }
+    //     return prices.reverse();
+    // }
+
+    // getMileages(){
+    //     var maxMileage = 450000;
+    //     var minMileage = 0;
+    //     var interval = 25000;
+    //     var mileages = [];
+    //     for (var i=minMileage; i<=maxMileage; i=i+interval ){
+    //         var start = 0;
+    //         var end = 0;
+    //         var label = "";
+    //         if(i == maxMileage){
+    //             start = minMileage;
+    //             end = maxMileage;
+    //             label = "All";
+    //         }
+    //         else{
+    //             start = minMileage;
+    //             end = i;
+    //             label = i.toLocaleString();
+    //         }
+    //         mileages.push({"start": start, "end": end, "label": label});
+
+    //     }
+    //     return mileages.reverse();
+    // }
 
     renderRedirect() {
         if(this.state.redirect){
@@ -25,6 +121,20 @@ class CarsPage extends Component {
             // return <Redirect to={{pathname:'/carDetail/?id=' + this.state.selectedItem.id, state: {'data': this.state.selectedItem} }}/>
         }
         else {
+
+            let make = this.getParameter("make");
+            let model = this.getParameter("model");
+            let maxYear = this.getParameter("year");
+            let maxPrice = this.getParameter("price").toLocaleString();
+            let maxMileage = this.getParameter("mileage").toLocaleString();
+
+            console.log("maxMileage arg: ", maxMileage);
+            // These declarations are needed to scope the functions and make them available
+            //inside the reactive base component
+            let internalGetYears = searchParams.getYears;
+            let internalGetPrices = searchParams.getPrices;
+            let internalGetMileages = searchParams.getMileages;
+
             return(
                 <div>
                     <section className="hero is-dark is-bold">
@@ -40,167 +150,169 @@ class CarsPage extends Component {
                             app={this.props.data.site.siteMetadata.appbaseio.project}
                             credentials={this.props.data.site.siteMetadata.appbaseio.accessKey}>
 
+
+                            {/* Refinement Filters */}
                             <section>
+                                
                                 <CategorySearch
                                     componentId="keywordSearchBox"
                                     dataField={["description", "model", "make"]}
                                     categoryField="brand.keyword" // use "brand.keyword" for newly cloned datasets
                                     placeholder="Search for cars by any description" style={{marginBottom: "10px"}} 
                                 />
+                                <SelectedFilters
+                                    showClearAll={true}
+                                    clearAllLabel="Clear filters"
+                                />
 
-                            <div className="media">
-                                <div className="media-left hide-mobile">
-                                    <MultiRange
-                                                componentId="yearFilter"
-                                                title="Filter by Year"
-                                                dataField="year"
-                                                data={[
-                                                    {"start": 2016, "end": 2025, "label": "2016 and up"},
-                                                    {"start": 2013, "end": 2016, "label": "2013 to 2016"},
-                                                    {"start": 2010, "end": 2013, "label": "2010 to 2013"},
-                                                    {"start": 1990, "end": 2010, "label": "2010 and older"},
-                                                    
-                                                ]}
-                                                defaultSelected={["2013 to 2016"]}/>
+                                <div className="columns">
+                                    <div className="column is-one-quarter">
+                                        {/* <div className="media"> */}
+                                            {/* <div className="media-left hide-mobile"> */}
+                                                <SingleRange
+                                                            componentId="maxYear"
+                                                            title="Max. Year"
+                                                            dataField="year"
+                                                            data={internalGetYears()}
+                                                            defaultSelected={maxYear}
+                                                            style={{marginBottom:"10px"}}            
+                                                />
 
-                                    <MultiList 
-                                        componentId="listMake"
-                                        dataField="make.keyword"
-                                        title="Filter By Make"
-                                        size={100}
-                                        selectAllLabel="All"
-                                        showSearch={false}
-                                        filterLabel="make"
-                                        sortBy="asc"
-                                        defaultSelected={["All"]} />
-                                    
-                                    <MultiList 
-                                        componentId="listModel"
-                                        dataField="model.keyword"
-                                        title="Filter By Model"
-                                        size={100}
-                                        selectAllLabel="All"
-                                        showSearch={false}
-                                        filterLabel="model"
-                                        sortBy="asc"
-                                        defaultSelected={["All"]}
-                                        react={{
-                                            and: ["listMake"]
-                                        }} />
+                                                <MultiList 
+                                                    componentId="make"
+                                                    dataField="make.keyword"
+                                                    title="Filter By Make"
+                                                    size={100}
+                                                    selectAllLabel="All"
+                                                    showSearch={false}
+                                                    filterLabel="make"
+                                                    sortBy="asc"
+                                                    defaultSelected={[make]}
+                                                    style={{marginBottom:"10px"}} />
+                                                
+                                                <MultiList 
+                                                    componentId="model"
+                                                    dataField="model.keyword"
+                                                    title="Filter By Model"
+                                                    size={100}
+                                                    selectAllLabel="All"
+                                                    showSearch={false}
+                                                    filterLabel="model"
+                                                    sortBy="asc"
+                                                    defaultSelected={[model]}
+                                                    react={{
+                                                        and: ["listMake"]
+                                                    }} 
+                                                    style={{marginBottom:"10px"}}/>
 
-                                    <RangeSlider
-                                        componentId="rangeSliderPrice"
-                                        dataField="price"
-                                        title="Filter by Price"
-                                        range={{
-                                            "start": 500,
-                                            "end": 100000
-                                        }}
-                                        rangeLabels={{
-                                            "start": "0.5K",
-                                            "end": "100K"
-                                        }}
-                                        showHistogram={false}
-                                        stepValue={500}
-                                        />
-                                    
-                                    <RangeSlider
-                                        componentId="rangeSliderMileage"
-                                        dataField="milage"
-                                        title="Filter by Mileage"
-                                        range={{
-                                            "start": 500,
-                                            "end": 350000
-                                        }}
-                                        rangeLabels={{
-                                            "start": "5K",
-                                            "end": "350K"
-                                        }}
-                                        showHistogram={false}
-                                        stepValue={5000}
-                                    />
+                                                <SingleRange
+                                                    componentId="maxPrice"
+                                                    title="Max. Price"
+                                                    dataField="price"
+                                                    data={internalGetPrices()}
+                                                    defaultSelected={maxPrice}
+                                                    style={{marginBottom:"10px"}}
+                                                />
 
-                                    <MultiList 
-                                        componentId="listTransmission"
-                                        dataField="transmission.keyword"
-                                        title="Transmission Type"
-                                        size={10}
-                                        selectAllLabel="All"
-                                        showSearch={false}
-                                        placeholder="Search transmission"
-                                        filterLabel="transmission"
-                                        sortBy="asc"
-                                        defaultSelected={["All"]} />
-                                
-                                <MultiList 
-                                        componentId="listExtColor"
-                                        dataField="ext_color.keyword"
-                                        title="Ext. Color"
-                                        size={100}
-                                        selectAllLabel="All"
-                                        showSearch={false}
-                                        filterLabel="ext_color"
-                                        sortBy="asc"
-                                        defaultSelected={["All"]} />
+                                                <SingleRange
+                                                    componentId="mileage"
+                                                    title="Max. mileage"
+                                                    dataField="milage"
+                                                    data={internalGetMileages()}
+                                                    defaultSelected={maxMileage}
+                                                    style={{marginBottom:"10px"}}
+                                                />
 
+                                                <MultiList 
+                                                    componentId="transmission"
+                                                    dataField="transmission.keyword"
+                                                    title="Transmission Type"
+                                                    size={10}
+                                                    selectAllLabel="All"
+                                                    showSearch={false}
+                                                    placeholder="Search transmission"
+                                                    filterLabel="transmission"
+                                                    sortBy="asc"
+                                                    defaultSelected={["All"]} 
+                                                    style={{marginBottom:"10px"}}/>
+                                            
+                                                <MultiList 
+                                                        componentId="exteriorColor"
+                                                        dataField="ext_color.keyword"
+                                                        title="Ext. Color"
+                                                        size={100}
+                                                        selectAllLabel="All"
+                                                        showSearch={false}
+                                                        filterLabel="ext_color"
+                                                        sortBy="asc"
+                                                        defaultSelected={["All"]} 
+                                                        style={{marginBottom:"10px"}}/>
+                                            {/* </div> */}
 
-                                </div>
-
-                                <div className="media-content">
-                                    <ResultList
-                                                componentId="result"
-                                                title="Results"
-                                                loader="Loading..."
-                                                stream={true}
-                                                dataField="model"
-                                                from={0}
-                                                size={5}
-                                                pagination={true}
-                                                react={{
-                                                    and: [ "modelDropDown", "makeDropDown", "yearDropDown", "keywordSearchBox", "mileageDropDown", "priceDropDown", "yearFilter", "listMake", "listModel", "rangeSliderPrice", "rangeSliderMilage", "listTransmission", "listExtColor"]
-                                                }}
-                                                URLParams={true}
-                                                onData={(res) => {
-                                                    return {
-                                                        image: "",
-                                                        title: res.name,
-                                                        description: (
-                                                            
-                                                                <div className="columns is-gapless" style={{marginBottom: "0px"}}>
-                                                                    <div className="column is-4">
-                                                                        <figure className="image" style={{padding:"0px"}}>
-                                                                            <img src={"https://d3innua9hpchvl.cloudfront.net/" + res.images[0]}/>
-                                                                        </figure>
-                                                                    </div>
-                                                                    <div className="column">
-                                                                        <div style={{padding: "10px"}}>
-                                                                            <p className="heading">{res.condition}</p>
-                                                                            <div className="title is-5">
-                                                                                {res.make + " " + res.model + " " + res.year}
-                                                                            </div>
-                                                                            <p className="subtitle is-3" style={{marginBottom: "0px"}} ><strong>${res.price.toLocaleString()}</strong></p>
-                                                                            <p className="subtitle is-6 is-italic"> {res.milage.toLocaleString()} KM</p>
-                                                                            
-                                                                            <p className="heading"><strong>transmission: </strong> {res.transmission} </p>
-                                                                            <p className="heading"><strong>drive train: </strong> {res.drivetrain} </p>
-                                                                            <p className="heading"><strong>exterior color: </strong> {res.ext_color} </p>
-                                                                            <CarFaxReport item={res.carfax}/>
-                                                                            <hr/>
-                                                                                
-                                                                        </div>
-                                                                        
-                                                                    </div>
-                                                                
-                                                            </div>),
-                                                            containerProps:{
-                                                                onClick: () => this.setRedirect({res})
-                                                            }
-                                                    }
-                                                }}/>
                                     </div>
-                            
-                                </div>
-                                </section>
+
+                                    <div className="column">
+
+                                        {/* <div className="media-content"> */}
+                                            <ResultList
+                                                        componentId="result"
+                                                        URLParams={true}
+                                                        title="Results"
+                                                        loader="Loading..."
+                                                        stream={true}
+                                                        dataField="model"
+                                                        from={0}
+                                                        size={5}
+                                                        pagination={true}
+                                                        react={{
+                                                            and: ["maxYear", "make", "model", "maxPrice", "mileage", "transmission", "exteriorColor"]
+                                                        }}
+                                                        URLParams={true}
+                                                        onData={(res) => {
+                                                            return {
+                                                                image: "",
+                                                                title: res.name,
+                                                                description: (
+                                                                    
+                                                                        <div className="panel">
+                                                                        <div className="columns is-gapless is-vcentered" style={{marginBottom: "0px"}}>
+                                                                            <div className="column is-4" style={{padding: "10px"}}>
+                                                                                <figure className="image" style={{padding:"0px"}}>
+                                                                                    <img src={"https://d3innua9hpchvl.cloudfront.net/" + res.image_main}/>
+                                                                                </figure>
+                                                                            </div>
+                                                                            <div className="column">
+                                                                                <div style={{padding: "10px"}}>
+                                                                                    <p className="heading">{res.condition}</p>
+                                                                                    <div className="title is-5">
+                                                                                        {res.make + " " + res.model + " (" + res.year + ")"}
+                                                                                    </div>
+                                                                                    <p className="subtitle is-3" style={{marginBottom: "0px"}} ><strong>${res.price.toLocaleString()}</strong></p>
+                                                                                    <p className="subtitle is-6 is-italic"> {res.milage.toLocaleString()} KM</p>
+                                                                                    
+                                                                                    <p className="heading"><strong>transmission: </strong> {res.transmission} </p>
+                                                                                    <p className="heading"><strong>drive train: </strong> {res.drivetrain} </p>
+                                                                                    <p className="heading"><strong>exterior color: </strong> {res.ext_color} </p>
+                                                                                    <CarFaxReport item={res.carfax}/>
+                                                                                    <hr/>
+                                                                                        
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                            </div>
+                                                                        
+                                                                    </div>),
+                                                                    containerProps:{
+                                                                        onClick: () => this.setRedirect({res})
+                                                                    }
+                                                            }
+                                                        }}/>
+                                                </div>
+                                    
+                                            {/* </div> */}
+                                        </div>
+                                {/* </div> */}
+                            </section>
 
                         </ReactiveBase>
                     </div>

@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 
 const Offerings = ({ gridItems }) => (
     <div className='columns is-multiline'>
-      {gridItems.map(item => (
-          <div className="column is-3 is-flex" style={{borderRadius: '5px'}}>
+      {gridItems.map((item,id) => (
+          <div key={id} className="column is-3 is-flex" style={{borderRadius: '5px'}}>
             <div className="box">
               <nav className="level">
                 <div className="level-item has-text-centered">
