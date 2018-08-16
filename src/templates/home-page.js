@@ -231,15 +231,19 @@ class HomePageTemplate extends React.Component {
                         <ResultCard 
                             componentId="specialOffersResult"
                             dataField="featured"
-                            stream={true}
+                            stream={false}
                             pagination={false}
-                            size={4}
                             showResultStats = {false}
+                            size={4}
                             defaultQuery={function(){
                               return {
-                                "match": {"featured": true}
+                                  "query":{
+                                    "term":{"featured": true}
+                                  },
+                                  "size": 4
+                                }
                               }
-                            }}
+                            }
                             onData={(res)=> {
                                   return {
                                     image: "https://d3innua9hpchvl.cloudfront.net/" + res.images[0],
@@ -252,7 +256,7 @@ class HomePageTemplate extends React.Component {
                                           <p className="subtitle is-5" style={{marginBottom: "0px"}}><strong>${res.price.toLocaleString()}</strong></p>
                                           <p>{res.milage.toLocaleString()} km </p>
                                           {/* <p className="subtitle is-6">{res.offer_details}</p> */}
-                                          <Link to={{pathname:"/carDetail/?id=" + res.id, state:{data: res}}}> View Listing</Link>
+                                         <Link to={{pathname:"/carDetail/?id=" + res.id, state:{data: res}}}> View Listing</Link>
                                         </div>
                                     )
                                   };

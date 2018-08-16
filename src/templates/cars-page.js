@@ -191,7 +191,7 @@ class CarsPage extends Component {
                                                     style={{marginBottom:"10px"}} />
                                                 
                                                 <MultiList 
-                                                    componentId="model"
+                                                    componentId="modelFilter"
                                                     dataField="model.keyword"
                                                     title="Filter By Model"
                                                     size={100}

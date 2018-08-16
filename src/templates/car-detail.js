@@ -14,7 +14,8 @@ class CarDetailView extends Component {
 
         this.state = {'prodData': {}, 'productId': ''}
         if(this.props.location.state){
-            this.state = {prodData: this.props.location.state.data};
+            var data = this.props.location.state.data;
+            this.state = {prodData: data , productId: data['id']};
         }
         if(this.props.location.search){
             //get params
