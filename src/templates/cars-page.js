@@ -249,6 +249,15 @@ class CarsPage extends Component {
 
                                                     }
                                                     style={{marginBottom:"10px"}}/>
+
+                                                <MultiList 
+                                                    componentId="driveTrainFilter"
+                                                    dataField="drivetrain.keyword"
+                                                    title="Drive Train"
+                                                    
+                                                    showSearch={false}
+                                                    
+                                                    style={{marginBottom:"10px"}}/>
                                             
                                             <MultiDataList 
                                                     componentId="exteriorColorFilter"
@@ -276,6 +285,7 @@ class CarsPage extends Component {
 
                                                     }
                                                     style={{marginBottom:"10px"}}/>
+
                                             {/* </div> */}
 
                                     </div>
@@ -294,7 +304,7 @@ class CarsPage extends Component {
                                                         size={5}
                                                         pagination={true}
                                                         react={{
-                                                            and: ["maxYearFilter", "makeFilter", "modelFilter", "maxPriceFilter", "mileageFilter", "transmissionFilter", "exteriorColorFilter"]
+                                                            and: ["maxYearFilter", "makeFilter", "modelFilter", "maxPriceFilter", "mileageFilter", "transmissionFilter", "driveTrainFilter", "exteriorColorFilter"]
                                                         }}
                                                         URLParams={true}
                                                         onData={(res) => {

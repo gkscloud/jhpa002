@@ -9,10 +9,10 @@ class ShippingCalculator extends Component {
               "from_country": "Miami",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$575-700",
-              "qty_2": "$2000",
-              "qty_3": "$2150",
-              "qty_4": "$2300"
+              "qty_1": "575-700",
+              "qty_2": 2000,
+              "qty_3": 2150,
+              "qty_4": 2300
             },
             {
               "from_country": "Miami",
@@ -27,10 +27,10 @@ class ShippingCalculator extends Component {
               "from_country": "Miami",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$550-625",
-              "qty_2": "$1300",
-              "qty_3": "$1500",
-              "qty_4": "$1700"
+              "qty_1": "550-625",
+              "qty_2": 1300,
+              "qty_3": 1500,
+              "qty_4": 1700
             },
             {
               "from_country": "Miami",
@@ -45,10 +45,10 @@ class ShippingCalculator extends Component {
               "from_country": "Miami",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$600",
-              "qty_2": "$1200",
-              "qty_3": "$1800",
-              "qty_4": "$2400"
+              "qty_1": 600,
+              "qty_2": 1200,
+              "qty_3": 1800,
+              "qty_4": 2400
             },
             {
               "from_country": "Miami",
@@ -72,10 +72,10 @@ class ShippingCalculator extends Component {
               "from_country": "Savannah",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$550-675",
-              "qty_2": "$1900",
-              "qty_3": "$2050",
-              "qty_4": "$2200"
+              "qty_1": "550-675",
+              "qty_2": 1900,
+              "qty_3": 2050,
+              "qty_4": 2200
             },
             {
               "from_country": "Savannah",
@@ -90,10 +90,10 @@ class ShippingCalculator extends Component {
               "from_country": "Savannah",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$550-625",
-              "qty_2": "$1200",
-              "qty_3": "$1400",
-              "qty_4": "$1600"
+              "qty_1": "550-625",
+              "qty_2": 1200,
+              "qty_3": 1400,
+              "qty_4": 1600
             },
             {
               "from_country": "Savannah",
@@ -108,10 +108,10 @@ class ShippingCalculator extends Component {
               "from_country": "Savannah",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$500",
-              "qty_2": "$1000",
-              "qty_3": "$1500",
-              "qty_4": "$2000"
+              "qty_1": 500,
+              "qty_2": 1000,
+              "qty_3": 1500,
+              "qty_4": 2000
             },
             {
               "from_country": "Savannah",
@@ -135,10 +135,10 @@ class ShippingCalculator extends Component {
               "from_country": "Newark",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$575-700",
-              "qty_2": "$2000",
-              "qty_3": "$2150",
-              "qty_4": "$2300"
+              "qty_1": "575-700",
+              "qty_2": 2000,
+              "qty_3": 2150,
+              "qty_4": 2300
             },
             {
               "from_country": "Newark",
@@ -153,10 +153,10 @@ class ShippingCalculator extends Component {
               "from_country": "Newark",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$550-625",
-              "qty_2": "$1200",
-              "qty_3": "$1400",
-              "qty_4": "$1600"
+              "qty_1": "550-625",
+              "qty_2": 1200,
+              "qty_3": 1400,
+              "qty_4": 1600
             },
             {
               "from_country": "Newark",
@@ -171,10 +171,10 @@ class ShippingCalculator extends Component {
               "from_country": "Newark",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$550",
-              "qty_2": "$1100",
-              "qty_3": "$1650",
-              "qty_4": "$2200"
+              "qty_1": 550,
+              "qty_2": 1100,
+              "qty_3": 1650,
+              "qty_4": 2200
             },
             {
               "from_country": "Newark",
@@ -198,10 +198,10 @@ class ShippingCalculator extends Component {
               "from_country": "Norfolk",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$550-675",
-              "qty_2": "$1900",
-              "qty_3": "$2050",
-              "qty_4": "$2200"
+              "qty_1": "550-675",
+              "qty_2": 1900,
+              "qty_3": 2050,
+              "qty_4": 2200
             },
             {
               "from_country": "Norfolk",
@@ -216,10 +216,10 @@ class ShippingCalculator extends Component {
               "from_country": "Norfolk",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$550-625",
-              "qty_2": "$1200",
-              "qty_3": "$1400",
-              "qty_4": "$1600"
+              "qty_1": "550-625",
+              "qty_2": 1200,
+              "qty_3": 1400,
+              "qty_4": 1600
             },
             {
               "from_country": "Norfolk",
@@ -234,10 +234,10 @@ class ShippingCalculator extends Component {
               "from_country": "Norfolk",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$500",
-              "qty_2": "$1000",
-              "qty_3": "$1500",
-              "qty_4": "$2000"
+              "qty_1": 500,
+              "qty_2": 1000,
+              "qty_3": 1500,
+              "qty_4": 2000
             },
             {
               "from_country": "Norfolk",
@@ -261,10 +261,10 @@ class ShippingCalculator extends Component {
               "from_country": "Chicago",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$750-900",
-              "qty_2": "$2700",
-              "qty_3": "$2850",
-              "qty_4": "$3000"
+              "qty_1": "750-900",
+              "qty_2": 2700,
+              "qty_3": 2850,
+              "qty_4": 3000
             },
             {
               "from_country": "Chicago",
@@ -279,10 +279,10 @@ class ShippingCalculator extends Component {
               "from_country": "Chicago",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$750-850",
-              "qty_2": "$2100",
-              "qty_3": "$2300",
-              "qty_4": "$2500"
+              "qty_1": "750-850",
+              "qty_2": 2100,
+              "qty_3": 2300,
+              "qty_4": 2500
             },
             {
               "from_country": "Chicago",
@@ -297,10 +297,10 @@ class ShippingCalculator extends Component {
               "from_country": "Chicago",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$725",
-              "qty_2": "$1450",
-              "qty_3": "$2175",
-              "qty_4": "$2900"
+              "qty_1": 725,
+              "qty_2": 1450,
+              "qty_3": 2175,
+              "qty_4": 2900
             },
             {
               "from_country": "Chicago",
@@ -324,10 +324,10 @@ class ShippingCalculator extends Component {
               "from_country": "Houston",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$675-800",
-              "qty_2": "$2400",
-              "qty_3": "$2550",
-              "qty_4": "$2700"
+              "qty_1": "675-800",
+              "qty_2": 2400,
+              "qty_3": 2550,
+              "qty_4": 2700
             },
             {
               "from_country": "Houston",
@@ -342,10 +342,10 @@ class ShippingCalculator extends Component {
               "from_country": "Houston",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$750-850",
-              "qty_2": "$1800",
-              "qty_3": "$2000",
-              "qty_4": "$2200"
+              "qty_1": "750-850",
+              "qty_2": 1800,
+              "qty_3": 2000,
+              "qty_4": 2200
             },
             {
               "from_country": "Houston",
@@ -360,10 +360,10 @@ class ShippingCalculator extends Component {
               "from_country": "Houston",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$675",
-              "qty_2": "$1350",
-              "qty_3": "$2025",
-              "qty_4": "$2700"
+              "qty_1": 675,
+              "qty_2": 1350,
+              "qty_3": 2025,
+              "qty_4": 2700
             },
             {
               "from_country": "Houston",
@@ -387,10 +387,10 @@ class ShippingCalculator extends Component {
               "from_country": "Los Angeles",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$825-1050",
-              "qty_2": "$3000",
-              "qty_3": "$3150",
-              "qty_4": "$3300"
+              "qty_1": "825-1050",
+              "qty_2": 3000,
+              "qty_3": 3150,
+              "qty_4": 3300
             },
             {
               "from_country": "Los Angeles",
@@ -405,10 +405,10 @@ class ShippingCalculator extends Component {
               "from_country": "Los Angeles",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$850-950",
-              "qty_2": "$2800",
-              "qty_3": "$3000",
-              "qty_4": "$3200"
+              "qty_1": "850-950",
+              "qty_2": 2800,
+              "qty_3": 3000,
+              "qty_4": 3200
             },
             {
               "from_country": "Los Angeles",
@@ -423,10 +423,10 @@ class ShippingCalculator extends Component {
               "from_country": "Los Angeles",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$650",
-              "qty_2": "$1300",
-              "qty_3": "$1950",
-              "qty_4": "$2600"
+              "qty_1": 650,
+              "qty_2": 1300,
+              "qty_3": 1950,
+              "qty_4": 2600
             },
             {
               "from_country": "Los Angeles",
@@ -450,10 +450,10 @@ class ShippingCalculator extends Component {
               "from_country": "Seattle",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$900-1150",
-              "qty_2": "$3300",
-              "qty_3": "$3450",
-              "qty_4": "$3600"
+              "qty_1": "900-1150",
+              "qty_2": 3300,
+              "qty_3": 3450,
+              "qty_4": 3600
             },
             {
               "from_country": "Seattle",
@@ -468,10 +468,10 @@ class ShippingCalculator extends Component {
               "from_country": "Seattle",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$950-1050",
-              "qty_2": "$3200",
-              "qty_3": "$3400",
-              "qty_4": "$3600"
+              "qty_1": "950-1050",
+              "qty_2": 3200,
+              "qty_3": 3400,
+              "qty_4": 3600
             },
             {
               "from_country": "Seattle",
@@ -486,10 +486,10 @@ class ShippingCalculator extends Component {
               "from_country": "Seattle",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$700",
-              "qty_2": "$1400",
-              "qty_3": "$2100",
-              "qty_4": "$2800"
+              "qty_1": 700,
+              "qty_2": 1400,
+              "qty_3": 2100,
+              "qty_4": 2800
             },
             {
               "from_country": "Seattle",
@@ -513,10 +513,10 @@ class ShippingCalculator extends Component {
               "from_country": "Toronto",
               "to_country": "Georgia",
               "port": "Poti",
-              "qty_1": "$850-1050",
-              "qty_2": "$3100",
-              "qty_3": "$3250",
-              "qty_4": "$3400"
+              "qty_1": "850-1050",
+              "qty_2": 3100,
+              "qty_3": 3250,
+              "qty_4": 3400
             },
             {
               "from_country": "Toronto",
@@ -531,10 +531,10 @@ class ShippingCalculator extends Component {
               "from_country": "Toronto",
               "to_country": "Germany",
               "port": "Bremenhaven",
-              "qty_1": "$800-900",
-              "qty_2": "$2400",
-              "qty_3": "$2550",
-              "qty_4": "$2700"
+              "qty_1": "800-900",
+              "qty_2": 2400,
+              "qty_3": 2550,
+              "qty_4": 2700
             },
             {
               "from_country": "Toronto",
@@ -549,7 +549,7 @@ class ShippingCalculator extends Component {
               "from_country": "Toronto",
               "to_country": "United Arab Emirates",
               "port": "Jebel Ali",
-              "qty_1": "$700-850",
+              "qty_1": "700-850",
               "qty_2": "Contact Us",
               "qty_3": "Contact Us",
               "qty_4": "Contact Us"
@@ -572,7 +572,9 @@ class ShippingCalculator extends Component {
               "qty_3": "Contact Us",
               "qty_4": "Contact Us"
             }
-          ]}
+          ]
+        
+        }
     }
 
     isSelected(item, group){
@@ -631,7 +633,7 @@ class ShippingCalculator extends Component {
             if(result[0]){
                 if (qtyKey in result[0]){
                     let estimate = result[0][qtyKey];
-                    if(estimate.toUpperCase().includes("CONTACT")){
+                    if(estimate.toString().toUpperCase().includes("CONTACT")){
                         //this.setState({"calculatedCost": defaultEstimate, "isEstimateAvailable": false })    
                         return defaultEstimate;
                     }

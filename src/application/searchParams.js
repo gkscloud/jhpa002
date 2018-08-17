@@ -1,8 +1,28 @@
 module.exports = {
 
+    getDriveTrainTypes(){
+        var result = []
+        var driveTrainTypes = ["All", "2WD", "ALL WHEEL DRIVE", "AWD", "FWD", "RWD"];
+        driveTrainTypes.map(item => {
+            result.push({"label": item, "value": item})
+        });
+
+        return result;
+    },
+
+    getInteriorColors(){
+        var result = []
+        var colors = ["All", "Beige", "Black", "Brown", "Blue", "Gold", "Gray", "Green", "Orange", "Purple", "Red", "Silver", "White", "Yellow", "Metallic", "Metal"];
+        colors.map(item => {
+            result.push({"label": item, "value": item})
+        });
+
+        return result;
+    },
+
     getExteriorColors(){
         var result = []
-        var colors = ["Blue", "Black", "Metallic", "Red", "White", "Silver", "Brown", "Green", "Steel", "Gray", "Yellow"];
+        var colors = ["All", "Beige", "Black", "Brown", "Blue", "Gold", "Gray", "Green", "Orange", "Purple", "Red", "Silver", "White", "Yellow", "Metallic", "Metal"];
         colors.map(item => {
             result.push({"label": item, "value": item})
         });
