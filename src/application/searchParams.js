@@ -113,7 +113,7 @@ module.exports = {
             }
             allYears.push({"start": start, "end": end, "label": label});
         }
-        console.log("allYears: ", allYears);
+        //console.log("allYears: ", allYears);
         return allYears.reverse();
     }
 

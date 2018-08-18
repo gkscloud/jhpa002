@@ -599,8 +599,8 @@ class ShippingCalculator extends Component {
         let selectedQuantity = "0";
         let isValuePlaceholder = value.startsWith("--") ? true: false;
 
-        console.log("dropDownSelectionChanged name, value: ", name, value);
-        console.log("isValuePlaceholder: ", isValuePlaceholder);
+        // console.log("dropDownSelectionChanged name, value: ", name, value);
+        // console.log("isValuePlaceholder: ", isValuePlaceholder);
 
         if (name == "origin"){
             selectedOrigin = isValuePlaceholder ? "" : value;
