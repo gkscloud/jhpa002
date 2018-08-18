@@ -28,7 +28,7 @@ class HomePageTemplate extends React.Component {
   }
 
   handleChange(source, value){
-    console.log("dropdown changed: ", source, value);
+    // console.log("dropdown changed: ", source, value);
     this.setState({[source]:value})
   }
 
