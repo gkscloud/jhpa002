@@ -169,7 +169,13 @@ module.exports = {
         ],
       },
     },
-    'gatsby-plugin-netlify',
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options:  {
+        mergeLinkHeaders: false,
+        mergeCachingHeaders: false
+      },
+    },
   ],
 }
 
