@@ -246,7 +246,7 @@ class HomePageTemplate extends React.Component {
                             }
                             onData={(res)=> {
                                   return {
-                                    image: "https://d3innua9hpchvl.cloudfront.net/" + res.images[0],
+                                    image: "https://dioi9g3sye18p.cloudfront.net/" + res.images[0],
                                     title: res.name,
                                     description: (
                                         <div>

@@ -124,7 +124,7 @@ class CarDetailView extends Component {
                                                 {this.safelyGetField("images", []).map((item,id) => {
                                                     return (
                                                         <div key={id}>
-                                                            <img className="image" src={"https://d3innua9hpchvl.cloudfront.net/" + item} onError={this.addDefaultSrc} />>
+                                                            <img className="image" src={"https://dioi9g3sye18p.cloudfront.net/" + item} onError={this.addDefaultSrc} />>
                                                         </div>
                                                     );
                                                 } )}

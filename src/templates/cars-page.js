@@ -296,6 +296,7 @@ class CarsPage extends Component {
                                             <ResultList
                                                         componentId="result"
                                                         URLParams={true}
+                                                        dataField="price"
                                                         title="Results"
                                                         loader="Loading..."
                                                         stream={true}
@@ -320,7 +321,7 @@ class CarsPage extends Component {
                                                                         <div className="columns is-gapless is-vcentered" style={{marginBottom: "0px"}}>
                                                                             <div className="column is-4" style={{padding: "10px"}}>
                                                                                 <figure className="image" style={{padding:"0px"}}>
-                                                                                    <img src={"https://d3innua9hpchvl.cloudfront.net/" + res.image_main}/>
+                                                                                    <img src={"https://dioi9g3sye18p.cloudfront.net/" + res.image_main}/>
                                                                                 </figure>
                                                                             </div>
                                                                             <div className="column">
@@ -329,8 +330,8 @@ class CarsPage extends Component {
                                                                                     <div className="title is-5">
                                                                                         {res.make + " " + res.model + " (" + res.year + ")"}
                                                                                     </div>
-                                                                                    <p className="subtitle is-3" style={{marginBottom: "0px"}} ><strong>${res.price.toLocaleString()}</strong></p>
-                                                                                    <p className="subtitle is-6 is-italic"> {res.milage.toLocaleString()} KM</p>
+                                                                                    <p className="subtitle is-3" style={{marginBottom: "0px"}} ><strong>${res.price}</strong></p>
+                                                                                    <p className="subtitle is-6 is-italic"> {res.milage} KM</p>
                                                                                     
                                                                                     <p className="heading"><strong>transmission: </strong> {res.transmission} </p>
                                                                                     <p className="heading"><strong>drive train: </strong> {res.drivetrain} </p>
