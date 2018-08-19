@@ -299,9 +299,12 @@ class CarsPage extends Component {
                                                         title="Results"
                                                         loader="Loading..."
                                                         stream={true}
-                                                        dataField="model"
                                                         from={0}
-                                                        size={5}
+                                                        size={8}
+                                                        sortOptions={[
+                                                            {"label": "Sort By Price - Lowest To Highest", "dataField": "price", "sortBy":"asc"},
+                                                            {"label": "Sort By Price - Highest To Lowest", "dataField": "price", "sortBy":"desc"}
+                                                        ]}
                                                         pagination={true}
                                                         react={{
                                                             and: ["maxYearFilter", "makeFilter", "modelFilter", "maxPriceFilter", "mileageFilter", "transmissionFilter", "driveTrainFilter", "exteriorColorFilter"]
