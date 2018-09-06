@@ -27,7 +27,7 @@ class CarsPage extends Component {
     }
 
     getParameter(name, defaultValue, parseNumber = false){
-        console.log("getParameter: ", name, " defaultValue type: ", defaultValue.constructor, "parseNumber: ", parseNumber);
+        // console.log("getParameter: ", name, " defaultValue type: ", defaultValue.constructor, "parseNumber: ", parseNumber);
         var result = "";
         //the refinement filter supersedes the initial search params
         var filterParameter = name + "Filter";
@@ -35,8 +35,8 @@ class CarsPage extends Component {
             //decode the parameter (it might have % characters)
             //simple way is to use a regex to replace single quotes and doublequotes
             result = decodeURI(result).replace(/["'\[\]]/g,"");
-            console.log("decoded result: " + result + "length: " + result.length);
-            console.log("IsNaN result: ", isNaN(result));
+            // console.log("decoded result: " + result + "length: " + result.length);
+            // console.log("IsNaN result: ", isNaN(result));
             if(!result){
                 result = this.state.params.get(name)? this.state.params.get(name) : "";
             }
@@ -164,11 +164,11 @@ class CarsPage extends Component {
             let drivetrain = this.getParameter("drivetrain", []);
             let exteriorcolor = this.getParameter("exteriorcolor", []);
 
-            console.log("make arg: ", make);
-            console.log("model arg: ", model);
-            console.log("year arg: ", year);
-            console.log("maxPrice arg: ", maxPrice);
-            console.log("maxMileage arg: ", maxMileage);
+            // console.log("make arg: ", make);
+            // console.log("model arg: ", model);
+            // console.log("year arg: ", year);
+            // console.log("maxPrice arg: ", maxPrice);
+            // console.log("maxMileage arg: ", maxMileage);
             // These declarations are needed to scope the functions and make them available
             //inside the reactive base component
             let internalGetYears = searchParams.getYears;
@@ -187,7 +187,7 @@ class CarsPage extends Component {
                             </div>
                         </div>
                     </section>
-                    <button onClick={()=> {console.log(this.props.location); console.log(this.state)}}>Print Props and State</button>
+                    {/* <button onClick={()=> {console.log(this.props.location); console.log(this.state)}}>Print Props and State</button> */}
                     
                     <ReactiveBase 
                             app={this.props.data.site.siteMetadata.appbaseio.project}
