@@ -24,7 +24,7 @@ class HomePageTemplate extends React.Component {
 
   searchListings() {
     // console.log("./cars/" + this.state.make, this.state.model, this.state.year, this.state.price, this.state.mileage);
-    navigateTo("/cars/?make=" + this.state.make + "&model=" + this.state.model + "&year=" + this.state.year + "&mileage=" + this.state.mileage + "&price=" + this.state.price);
+    navigateTo(encodeURI("/cars/?makeFilter=" + this.state.make + "&modelFilter=" + this.state.model + "&yearFilter=" + this.state.year + "&mileageFilter=" + this.state.mileage + "&priceFilter=" + this.state.price));
   }
 
   handleChange(source, value){
@@ -34,7 +34,7 @@ class HomePageTemplate extends React.Component {
 
   render() {
       let internalHandleChange = this.handleChange;
-
+      
       return (
                 <div>
                   <Helmet>
@@ -75,10 +75,11 @@ class HomePageTemplate extends React.Component {
                                         <section>
                                           <div className="columns">
                                               <div className="column">
-                                                  <SingleDropdownList
+                                                  <MultiDropdownList
                                                       componentId="make"
                                                       dataField="make.keyword"
-                                                      title="MAKE"
+                                                      title="MAKE(s)"
+                                                      sortBy="asc"
                                                       placeholder="Select Make"
                                                       selectAllLabel="All"
                                                       defaultSelected = "All"
@@ -92,10 +93,11 @@ class HomePageTemplate extends React.Component {
                                                   />
                                               </div>
                                               <div className="column">
-                                                  <SingleDropdownList
+                                                  <MultiDropdownList
                                                       componentId="model"
                                                       dataField="model.keyword"
-                                                      title="MODEL" 
+                                                      sortBy="asc"
+                                                      title="MODEL(s)" 
                                                       selectAllLabel="All"
                                                       defaultSelected = "All"
                                                       react={{
@@ -112,10 +114,10 @@ class HomePageTemplate extends React.Component {
                                                   />
                                               </div>
                                               <div className="column">
-                                                  <SingleDropdownRange
+                                                  <MultiDropdownList
                                                       componentId="year"
                                                       dataField="year"
-                                                      title="MAX. YEAR"
+                                                      title="YEAR(s)"
                                                       data = {
                                                         searchParams.getYears()
                                                       }
@@ -125,7 +127,7 @@ class HomePageTemplate extends React.Component {
                                                       onValueChange={
                                                         function(value){
                                                           if(value){
-                                                            internalHandleChange("year", value["label"]);
+                                                            internalHandleChange("year", value);
                                                           }
                                                         }
                                                       }

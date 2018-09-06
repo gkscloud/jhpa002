@@ -22,6 +22,10 @@ module.exports = {
       accessKey: "TMuACWc7u:264fb2e8-5de0-43e3-9b01-9589f2a1b182",
       project: "portautonew"
     },
+    appbaseio_test:{
+      accessKey: "VFmQym0TP:0f1c1fe1-004a-477e-85a4-b3bb99e77fe6",
+      project: "portauto-2"
+    },
   },
   plugins: [
     'gatsby-plugin-react-helmet',

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
-import  { ReactiveBase, SelectedFilters, CategorySearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDataList, MultiDropdownList, SingleList, SingleDropDownList } from '@appbaseio/reactivesearch'
+import  { ReactiveBase, SelectedFilters, DataSearch, SingleRange, SingleDropdownRange, MultiRange, RangeSlider, ResultCard, ResultList, MultiList, MultiDataList, MultiDropdownList, SingleList, SingleDropDownList } from '@appbaseio/reactivesearch'
 import { navigateTo } from 'gatsby-link'
 import CarFaxReport from '../components/CarFaxReport'
 import CarInfoView from '../components/CarInfoView'
@@ -26,19 +26,50 @@ class CarsPage extends Component {
         console.log("setRedirect on Cars-Page: ", item);
     }
 
-    getParameter(name){
+    getParameter(name, defaultValue, parseNumber = false){
+        console.log("getParameter: ", name, " defaultValue type: ", defaultValue.constructor, "parseNumber: ", parseNumber);
         var result = "All";
-        if(this.state.params){
-            result = this.state.params.get(name) ? this.state.params.get(name) : "All"; 
-            
-            if(!isNaN(result)){
-                return parseInt(result);
-            }
-        }
-        
-        return result;
-        
+        //the refinement filter supersedes the initial search params
+        var filterParameter = name + "Filter";
+        if(this.state.params) {
+            if(result){ 
 
+                //decode the parameter (it might have % characters)
+                //simple way is to use a regex to replace single quotes and doublequotes
+                result = decodeURI(result).replace(/["'\[\]]/g,"");
+                // console.log("decoded result: " + result + "length: " + result.length);
+                // console.log("IsNaN result: ", isNaN(result));
+
+                try{
+                    //if the parameter has commas, then it is an array.
+                    if(defaultValue.constructor == Array){
+                        // console.log("parsing as Array");
+                        return result.split(",");
+                    }
+
+                    //if we are expecting a number, parse and return a number
+                    if(parseNumber || defaultValue.constructor == Number){
+                        // console.log("parsing as number");
+                        var parsedResult = parseInt(result);
+                        if(isNaN(parsedResult)){
+                            return result;
+                        }
+                        return parsedResult;
+                    }
+                }
+                catch (err) {
+                    console.log(err);
+                    return defaultValue;
+                }
+            }
+            else{
+                return defaultValue;
+            }
+        
+        }
+        else {
+            return defaultValue;
+        }
     }
 
     // getYears(){
@@ -122,18 +153,27 @@ class CarsPage extends Component {
         }
         else {
 
-            let make = this.getParameter("make");
-            let model = this.getParameter("model");
-            let maxYear = this.getParameter("year");
-            let maxPrice = this.getParameter("price").toLocaleString();
-            let maxMileage = this.getParameter("mileage").toLocaleString();
+            let make = this.getParameter("make", ["All"]);
+            let model = this.getParameter("model", ["All"]);
+            let year = this.getParameter("year", ["All"],true);
+            let maxPrice = this.getParameter("price", "All", true).toLocaleString();
+            let maxMileage = this.getParameter("mileage", "All",true).toLocaleString();
+            let transmission = this.getParameter("transmission", []);
+            let drivetrain = this.getParameter("drivetrain", []);
+            let exteriorcolor = this.getParameter("exteriorcolor", []);
 
+            console.log("make arg: ", make);
+            console.log("model arg: ", model);
+            console.log("year arg: ", year);
+            console.log("maxPrice arg: ", maxPrice);
             console.log("maxMileage arg: ", maxMileage);
             // These declarations are needed to scope the functions and make them available
             //inside the reactive base component
             let internalGetYears = searchParams.getYears;
             let internalGetPrices = searchParams.getPrices;
             let internalGetMileages = searchParams.getMileages;
+
+            let main = this;
 
             return(
                 <div>
@@ -145,7 +185,8 @@ class CarsPage extends Component {
                             </div>
                         </div>
                     </section>
-
+                    <button onClick={()=> {console.log(this.props.location); console.log(this.state)}}>Print Props and State</button>
+                    
                     <ReactiveBase 
                             app={this.props.data.site.siteMetadata.appbaseio.project}
                             credentials={this.props.data.site.siteMetadata.appbaseio.accessKey}>
@@ -154,10 +195,9 @@ class CarsPage extends Component {
                             {/* Refinement Filters */}
                             <section>
                                 
-                                <CategorySearch
+                                <DataSearch
                                     componentId="keywordSearchBox"
-                                    dataField={["description", "model", "make"]}
-                                    categoryField="brand.keyword" // use "brand.keyword" for newly cloned datasets
+                                    dataField={["description", "model", "make", "year"]}
                                     placeholder="Search for cars by any description" style={{marginBottom: "10px"}} 
                                 />
                                 <SelectedFilters
@@ -169,13 +209,15 @@ class CarsPage extends Component {
                                     <div className="column is-one-quarter">
                                         {/* <div className="media"> */}
                                             {/* <div className="media-left hide-mobile"> */}
-                                                <SingleRange
-                                                            componentId="maxYearFilter"
-                                                            title="Max. Year"
+                                                <MultiList
+                                                            componentId="yearFilter"
+                                                            title="Filter By Year"
                                                             dataField="year"
+                                                            showSearch={false}
                                                             data={internalGetYears()}
-                                                            defaultSelected={maxYear}
-                                                            style={{marginBottom:"10px"}}            
+                                                            defaultSelected={year}
+                                                            style={{marginBottom:"10px"}}  
+                                                            URLParams={true}         
                                                 />
 
                                                 <MultiList 
@@ -187,8 +229,9 @@ class CarsPage extends Component {
                                                     showSearch={false}
                                                     filterLabel="make"
                                                     sortBy="asc"
-                                                    defaultSelected={[make]}
-                                                    style={{marginBottom:"10px"}} />
+                                                    defaultSelected={make}
+                                                    style={{marginBottom:"10px"}} 
+                                                    URLParams={true}/>
                                                 
                                                 <MultiList 
                                                     componentId="modelFilter"
@@ -199,19 +242,21 @@ class CarsPage extends Component {
                                                     showSearch={false}
                                                     filterLabel="model"
                                                     sortBy="asc"
-                                                    defaultSelected={[model]}
+                                                    defaultSelected={model}
                                                     react={{
                                                         and: ["makeFilter"]
                                                     }} 
-                                                    style={{marginBottom:"10px"}}/>
+                                                    style={{marginBottom:"10px"}}
+                                                    URLParams={true}/>
 
                                                 <SingleRange
-                                                    componentId="maxPriceFilter"
+                                                    componentId="priceFilter"
                                                     title="Max. Price"
                                                     dataField="price"
                                                     data={internalGetPrices()}
                                                     defaultSelected={maxPrice}
                                                     style={{marginBottom:"10px"}}
+                                                    URLParams={true}
                                                 />
 
                                                 <SingleRange
@@ -221,6 +266,7 @@ class CarsPage extends Component {
                                                     data={internalGetMileages()}
                                                     defaultSelected={maxMileage}
                                                     style={{marginBottom:"10px"}}
+                                                    URLParams={true}
                                                 />
 
                                                 <MultiDataList 
@@ -229,6 +275,7 @@ class CarsPage extends Component {
                                                     title="Transmission Type"
                                                     data={searchParams.getTransmissionTypes()}
                                                     showSearch={false}
+                                                    defaultSelected={transmission}
                                                     customQuery={function(value,props){
                                                         // console.log("selected transmission: ", value);
                                                         if(value[0]){
@@ -248,22 +295,25 @@ class CarsPage extends Component {
                                                         }
 
                                                     }
-                                                    style={{marginBottom:"10px"}}/>
+                                                    style={{marginBottom:"10px"}}
+                                                    URLParams={true}/>
 
                                                 <MultiList 
-                                                    componentId="driveTrainFilter"
+                                                    componentId="drivetrainFilter"
                                                     dataField="drivetrain.keyword"
                                                     title="Drive Train"
-                                                    
+                                                    defaultSelected={drivetrain}
                                                     showSearch={false}
                                                     
-                                                    style={{marginBottom:"10px"}}/>
+                                                    style={{marginBottom:"10px"}}
+                                                    URLParams={true}/>
                                             
                                             <MultiDataList 
-                                                    componentId="exteriorColorFilter"
+                                                    componentId="exteriorcolorFilter"
                                                     dataField="ext_color"
                                                     title="Exterior Color"
                                                     data={searchParams.getExteriorColors()}
+                                                    defaultSelected={exteriorcolor}
                                                     showSearch={false}
                                                     customQuery={function(value,props){
                                                         // console.log("selected color: ", value);
@@ -284,7 +334,8 @@ class CarsPage extends Component {
                                                         }
 
                                                     }
-                                                    style={{marginBottom:"10px"}}/>
+                                                    style={{marginBottom:"10px"}}
+                                                    URLParams={true}/>
 
                                             {/* </div> */}
 
@@ -308,7 +359,7 @@ class CarsPage extends Component {
                                                         ]}
                                                         pagination={true}
                                                         react={{
-                                                            and: ["maxYearFilter", "makeFilter", "modelFilter", "maxPriceFilter", "mileageFilter", "transmissionFilter", "driveTrainFilter", "exteriorColorFilter"]
+                                                            and: ["yearFilter", "makeFilter", "modelFilter", "priceFilter", "mileageFilter", "transmissionFilter", "drivetrainFilter", "exteriorcolorFilter", "keywordSearchBox"]
                                                         }}
                                                         URLParams={true}
                                                         onData={(res) => {
@@ -317,6 +368,7 @@ class CarsPage extends Component {
                                                                 title: res.name,
                                                                 description: (
                                                                     
+                                                                        <a href={"/carDetail/?id=" + res.id} target="_blank">
                                                                         <div className="panel">
                                                                         <div className="columns is-gapless is-vcentered" style={{marginBottom: "0px"}}>
                                                                             <div className="column is-4" style={{padding: "10px"}}>
@@ -344,9 +396,9 @@ class CarsPage extends Component {
                                                                             </div>
                                                                             </div>
                                                                         
-                                                                    </div>),
+                                                                    </div></a>),
                                                                     containerProps:{
-                                                                        onClick: () => this.setRedirect({res})
+                                                                        //onClick: () => this.setRedirect({res})
                                                                     }
                                                             }
                                                         }}/>
