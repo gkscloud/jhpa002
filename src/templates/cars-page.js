@@ -32,14 +32,16 @@ class CarsPage extends Component {
         //the refinement filter supersedes the initial search params
         var filterParameter = name + "Filter";
         if(this.state.params) {
+            //decode the parameter (it might have % characters)
+            //simple way is to use a regex to replace single quotes and doublequotes
+            result = decodeURI(result).replace(/["'\[\]]/g,"");
+            console.log("decoded result: " + result + "length: " + result.length);
+            console.log("IsNaN result: ", isNaN(result));
+            if(!result){
+                result = this.state.params.get(name)? this.state.params.get(name) : "";
+            }
+
             if(result){ 
-
-                //decode the parameter (it might have % characters)
-                //simple way is to use a regex to replace single quotes and doublequotes
-                result = decodeURI(result).replace(/["'\[\]]/g,"");
-                // console.log("decoded result: " + result + "length: " + result.length);
-                // console.log("IsNaN result: ", isNaN(result));
-
                 try{
                     //if the parameter has commas, then it is an array.
                     if(defaultValue.constructor == Array){
@@ -214,7 +216,7 @@ class CarsPage extends Component {
                                                             title="Filter By Year"
                                                             dataField="year"
                                                             showSearch={false}
-                                                            data={internalGetYears()}
+                                                            selectAllLabel="All"
                                                             defaultSelected={year}
                                                             style={{marginBottom:"10px"}}  
                                                             URLParams={true}         
