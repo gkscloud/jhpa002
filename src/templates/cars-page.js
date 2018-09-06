@@ -28,7 +28,7 @@ class CarsPage extends Component {
 
     getParameter(name, defaultValue, parseNumber = false){
         console.log("getParameter: ", name, " defaultValue type: ", defaultValue.constructor, "parseNumber: ", parseNumber);
-        var result = "All";
+        var result = "";
         //the refinement filter supersedes the initial search params
         var filterParameter = name + "Filter";
         if(this.state.params) {
