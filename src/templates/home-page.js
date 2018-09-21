@@ -117,6 +117,7 @@ class HomePageTemplate extends React.Component {
                                                   <MultiDropdownList
                                                       componentId="year"
                                                       dataField="year"
+                                                      sortBy="desc"
                                                       title="YEAR(s)"
                                                       placeholder="Select Max Year"
                                                       selectAllLabel="All"
