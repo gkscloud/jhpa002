@@ -22,7 +22,8 @@ module.exports = {
 
     getExteriorColors(){
         var result = []
-        var colors = ["All", "Beige", "Black", "Brown", "Blue", "Gold", "Gray", "Green", "Orange", "Purple", "Red", "Silver", "White", "Yellow", "Metallic", "Metal"];
+        //The "All" type of color is provided in the filter component declaration
+        var colors = ["Beige", "Black", "Brown", "Blue", "Gold", "Gray", "Green", "Orange", "Purple", "Red", "Silver", "White", "Yellow", "Metallic", "Metal"];
         colors.map(item => {
             result.push({"label": item, "value": item})
         });

@@ -18,7 +18,7 @@ class CarsPage extends Component {
             console.log("CarsPage UrlSearchParams: ", parameters.get('make'));
         }
 
-        this.state = {redirect: false, selectedItem: '', params: parameters};
+        this.state = {redirect: false, selectedItem: '', params: parameters, filterState: ""};
     }
 
     setRedirect(item) {
@@ -71,6 +71,14 @@ class CarsPage extends Component {
         }
         else {
             return defaultValue;
+        }
+    }
+
+    toggleFilterDisplay() {
+        if(this.state.filterState)
+            this.setState({"filterState": ""});
+        else{
+            this.setState({"filterState": "is-hidden-mobile"});
         }
     }
 
@@ -209,19 +217,30 @@ class CarsPage extends Component {
 
                                 <div className="columns">
                                     <div className="column is-one-quarter">
-                                        {/* <div className="media"> */}
-                                            {/* <div className="media-left hide-mobile"> */}
-                                                <MultiList
-                                                            componentId="yearFilter"
-                                                            title="Filter By Year"
-                                                            dataField="year"
-                                                            showSearch={false}
-                                                            selectAllLabel="All"
-                                                            defaultSelected={year}
-                                                            style={{marginBottom:"10px"}}  
-                                                            URLParams={true}         
-                                                />
-
+                                           
+                                           <div className="panel" style={{marginTop: "10px"}}>
+                                            <div className="panel-heading">
+                                                <p style={{display: "inline"}}>APPLY FILTERS</p>
+                                                <a className="icon" style={{display: "inline", float:"right"}} onClick={() => this.toggleFilterDisplay()}>
+                                                    <i className="fa fa-angle-down"></i>
+                                                </a>
+                                            </div>
+                                           
+                                            <div className={"panel-block " + this.state.filterState} style={{display: "block"}}>
+                                                    <MultiList 
+                                                                componentId="yearFilter"
+                                                                title="Filter By Year"
+                                                                dataField="year"
+                                                                sortBy="desc"
+                                                                showSearch={false}
+                                                                selectAllLabel="All"
+                                                                defaultSelected={year}
+                                                                style={{marginBottom:"10px"}}  
+                                                                URLParams={true}         
+                                                    />
+                                                </div>
+                                                
+                                                <div className={"panel-block " + this.state.filterState} style={{display: "block"}}>
                                                 <MultiList 
                                                     componentId="makeFilter"
                                                     dataField="make.keyword"
@@ -234,7 +253,9 @@ class CarsPage extends Component {
                                                     defaultSelected={make}
                                                     style={{marginBottom:"10px"}} 
                                                     URLParams={true}/>
-                                                
+                                                </div>
+
+                                                <div className={"panel-block " + this.state.filterState} style={{display: "block"}}>
                                                 <MultiList 
                                                     componentId="modelFilter"
                                                     dataField="model.keyword"
@@ -250,7 +271,10 @@ class CarsPage extends Component {
                                                     }} 
                                                     style={{marginBottom:"10px"}}
                                                     URLParams={true}/>
+                                                </div>
 
+                                                <div className={"panel-block " + this.state.filterState} style={{display: "block"}}>
+                                        
                                                 <SingleRange
                                                     componentId="priceFilter"
                                                     title="Max. Price"
@@ -260,7 +284,10 @@ class CarsPage extends Component {
                                                     style={{marginBottom:"10px"}}
                                                     URLParams={true}
                                                 />
+                                                </div>
+                                            
 
+                                                <div className={"panel-block " + this.state.filterState} style={{display: "block"}}>
                                                 <SingleRange
                                                     componentId="mileageFilter"
                                                     title="Max. mileage"
@@ -270,77 +297,93 @@ class CarsPage extends Component {
                                                     style={{marginBottom:"10px"}}
                                                     URLParams={true}
                                                 />
+                                                </div>
+                                            
 
-                                                <MultiDataList 
-                                                    componentId="transmissionFilter"
-                                                    dataField="transmission"
-                                                    title="Transmission Type"
-                                                    data={searchParams.getTransmissionTypes()}
-                                                    showSearch={false}
-                                                    defaultSelected={transmission}
-                                                    customQuery={function(value,props){
-                                                        // console.log("selected transmission: ", value);
-                                                        if(value[0]){
-                                                                return {
-                                                                        "query_string": {
-                                                                            "default_field": "transmission",
-                                                                            "query": value[0]
-                                                                        }
-                                                                    }
-                                                            }
-                                                            else{
-                                                                // console.log("else query");
-                                                                return {
-                                                                    "match_all": {}
-                                                                }
-                                                            }
-                                                        }
-
-                                                    }
-                                                    style={{marginBottom:"10px"}}
-                                                    URLParams={true}/>
-
+                                                <div className={"panel-block " + this.state.filterState} style={{display: "block"}}>
                                                 <MultiList 
                                                     componentId="drivetrainFilter"
                                                     dataField="drivetrain.keyword"
                                                     title="Drive Train"
                                                     defaultSelected={drivetrain}
                                                     showSearch={false}
-                                                    
+                                                    showCount = {false}
                                                     style={{marginBottom:"10px"}}
                                                     URLParams={true}/>
+                                                </div>
                                             
-                                            <MultiDataList 
-                                                    componentId="exteriorcolorFilter"
-                                                    dataField="ext_color"
-                                                    title="Exterior Color"
-                                                    data={searchParams.getExteriorColors()}
-                                                    defaultSelected={exteriorcolor}
-                                                    showSearch={false}
-                                                    customQuery={function(value,props){
-                                                        // console.log("selected color: ", value);
-                                                        if(value[0]){
-                                                                return {
-                                                                        "query_string": {
-                                                                            "default_field": "ext_color",
-                                                                            "query": value[0]
+
+                                                <div className={"panel-block " + this.state.filterState} style={{display: "block"}}>
+                                                    <MultiDataList 
+                                                        componentId="transmissionFilter"
+                                                        dataField="transmission"
+                                                        title="Transmission Type"
+                                                        data={searchParams.getTransmissionTypes()}
+                                                        showSearch={false}
+                                                        defaultSelected={transmission}
+                                                        customQuery={function(value,props){
+                                                            // console.log("selected transmission: ", value);
+                                                            if(value && value.length > 0){
+                                                                    return {
+                                                                            "query": {
+                                                                                "bool":{
+                                                                                    "should": value.map(v => {
+                                                                                        return {"match": {"transmission": v}}
+                                                                                    })
+                                                                                }
+                                                                            }
                                                                         }
+                                                                }
+                                                                else{
+                                                                    // console.log("else query");
+                                                                    return {
+                                                                        "match_all": {}
                                                                     }
+                                                                }
                                                             }
-                                                            else{
-                                                                // console.log("else query");
-                                                                return {
-                                                                    "match_all": {}
+
+                                                        }
+                                                        style={{marginBottom:"10px"}}
+                                                        URLParams={true}/>
+                                                </div>
+                                                
+
+                                                <div className={"panel-block " + this.state.filterState} style={{display: "block"}}>
+                                                    <MultiDataList 
+                                                        componentId="exteriorcolorFilter"
+                                                        dataField="ext_color"
+                                                        title="Exterior Color"
+                                                        data={searchParams.getExteriorColors()}
+                                                        defaultSelected={exteriorcolor}
+                                                        showSearch={false}
+                                                        customQuery={function(value,props){
+                                                                console.log("selected color: ", value);
+                                                                if(value && value.length > 0){
+                                                                    return {
+                                                                            "query": {
+                                                                                "bool":{
+                                                                                    "should": value.map(v => {
+                                                                                        return {"match": {"ext_color": v}}
+                                                                                    })
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                }
+                                                                else {
+                                                                    // console.log("else query");
+                                                                    return {
+                                                                        "match_all": {}
+                                                                    }
                                                                 }
                                                             }
                                                         }
+                                                        style={{marginBottom:"10px"}}
+                                                        URLParams={true}/>
+                                                    </div>
 
-                                                    }
-                                                    style={{marginBottom:"10px"}}
-                                                    URLParams={true}/>
-
-                                            {/* </div> */}
-
+                                                </div>
+                                                        
+                                            
                                     </div>
 
                                     <div className="column">
